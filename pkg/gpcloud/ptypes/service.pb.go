@@ -32,8 +32,7 @@ var file_service_proto_rawDesc = []byte{
 	0x2f, 0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x1a, 0x0e, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x1a, 0x0b, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a,
-	0x0d, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0e,
-	0x68, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0d,
+	0x0d, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0d,
 	0x67, 0x65, 0x6e, 0x65, 0x72, 0x69, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0e, 0x73,
 	0x65, 0x63, 0x75, 0x72, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0d, 0x70,
 	0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x0c, 0x73, 0x65,
@@ -873,7 +872,7 @@ var file_service_proto_rawDesc = []byte{
 	0x24, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x69, 0x6d, 0x61, 0x67, 0x65, 0x2e, 0x43, 0x6f, 0x6e, 0x66,
 	0x69, 0x72, 0x6d, 0x49, 0x6d, 0x61, 0x67, 0x65, 0x55, 0x70, 0x6c, 0x6f, 0x61, 0x64, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x32, 0x89, 0x0a, 0x0a, 0x0a,
+	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x32, 0xb0, 0x09, 0x0a, 0x0a,
 	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x41, 0x50, 0x49, 0x12, 0x44, 0x0a, 0x0b, 0x47, 0x65,
 	0x74, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x1d, 0x2e, 0x61, 0x70, 0x69, 0x2e,
 	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
@@ -896,78 +895,72 @@ var file_service_proto_rawDesc = []byte{
 	0x72, 0x6b, 0x2e, 0x44, 0x48, 0x43, 0x50, 0x4e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6e, 0x65, 0x74,
 	0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x44, 0x48, 0x43, 0x50, 0x4e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x15, 0x50, 0x75, 0x73,
-	0x68, 0x48, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x49, 0x6e, 0x76, 0x65, 0x6e, 0x74, 0x6f,
-	0x72, 0x79, 0x12, 0x2a, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x68, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72,
-	0x65, 0x2e, 0x50, 0x75, 0x73, 0x68, 0x48, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x49, 0x6e,
-	0x76, 0x65, 0x6e, 0x74, 0x6f, 0x72, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12,
-	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x44, 0x0a, 0x0c, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x77, 0x69, 0x74, 0x63, 0x68,
-	0x65, 0x73, 0x12, 0x11, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6e, 0x65, 0x74, 0x77,
-	0x6f, 0x72, 0x6b, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53, 0x77, 0x69, 0x74, 0x63, 0x68, 0x65, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x4d, 0x61, 0x63, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x4d, 0x61, 0x70, 0x70,
-	0x69, 0x6e, 0x67, 0x12, 0x2b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72,
-	0x6b, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x63, 0x41, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x4d, 0x61, 0x70, 0x70, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x1a, 0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52,
-	0x75, 0x6e, 0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x12, 0x23, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e,
-	0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x75,
-	0x74, 0x6f, 0x52, 0x75, 0x6e, 0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x75, 0x0a, 0x18, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x76, 0x69,
-	0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12,
-	0x2b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x50, 0x6f, 0x73,
-	0x74, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c,
-	0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x61,
-	0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72,
-	0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61,
-	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x1a, 0x46, 0x69,
-	0x6e, 0x69, 0x73, 0x68, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67,
-	0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x2d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x50, 0x72, 0x6f, 0x76,
-	0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0c, 0x4c, 0x69, 0x73,
+	0x74, 0x53, 0x77, 0x69, 0x74, 0x63, 0x68, 0x65, 0x73, 0x12, 0x11, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x61,
+	0x70, 0x69, 0x2e, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x53,
+	0x77, 0x69, 0x74, 0x63, 0x68, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x5a, 0x0a, 0x17, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x63, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x4d, 0x61, 0x70, 0x70, 0x69, 0x6e, 0x67, 0x12, 0x2b, 0x2e, 0x61, 0x70, 0x69,
+	0x2e, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d,
+	0x61, 0x63, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x4d, 0x61, 0x70, 0x70, 0x69, 0x6e, 0x67,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d,
-	0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x1a, 0x50,
-	0x6f, 0x73, 0x74, 0x44, 0x65, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e,
-	0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x2d, 0x2e, 0x61, 0x70, 0x69, 0x2e,
-	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x44, 0x65, 0x70, 0x72, 0x6f,
-	0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63,
-	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45,
-	0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x15,
-	0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61,
-	0x72, 0x67, 0x65, 0x74, 0x73, 0x12, 0x11, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f,
-	0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x16, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x6e,
-	0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x29, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45,
-	0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a, 0x17,
-	0x4c, 0x69, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x11, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d,
-	0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x61, 0x70, 0x69,
-	0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x74,
-	0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xc6, 0x01, 0x5a, 0x14, 0x73, 0x68, 0x61, 0x72,
-	0x65, 0x64, 0x2f, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x3b, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73,
-	0x92, 0x41, 0xac, 0x01, 0x12, 0x4c, 0x0a, 0x11, 0x47, 0x50, 0x4f, 0x52, 0x54, 0x41, 0x4c, 0x20,
-	0x43, 0x6c, 0x6f, 0x75, 0x64, 0x20, 0x41, 0x50, 0x49, 0x22, 0x30, 0x12, 0x16, 0x68, 0x74, 0x74,
-	0x70, 0x73, 0x3a, 0x2f, 0x2f, 0x67, 0x2d, 0x70, 0x6f, 0x72, 0x74, 0x61, 0x6c, 0x2e, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x1a, 0x16, 0x73, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x40, 0x67, 0x2d, 0x70,
-	0x6f, 0x72, 0x74, 0x61, 0x6c, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x32, 0x05, 0x30, 0x2e, 0x30,
-	0x2e, 0x31, 0x2a, 0x01, 0x02, 0x32, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x10, 0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x5a, 0x23, 0x0a, 0x21, 0x0a, 0x0a, 0x41,
-	0x70, 0x69, 0x4b, 0x65, 0x79, 0x41, 0x75, 0x74, 0x68, 0x12, 0x13, 0x08, 0x02, 0x1a, 0x0d, 0x41,
-	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x20, 0x02, 0x62, 0x10,
-	0x0a, 0x0e, 0x0a, 0x0a, 0x41, 0x70, 0x69, 0x4b, 0x65, 0x79, 0x41, 0x75, 0x74, 0x68, 0x12, 0x00,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5d, 0x0a, 0x10, 0x47,
+	0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e, 0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x12,
+	0x23, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x47, 0x65, 0x74,
+	0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e, 0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x2e, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e, 0x53, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x75, 0x0a, 0x18, 0x50, 0x6f,
+	0x73, 0x74, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61,
+	0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12, 0x2b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f,
+	0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x2e, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e,
+	0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x5f, 0x0a, 0x1a, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x50, 0x72, 0x6f, 0x76, 0x69,
+	0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x12,
+	0x2d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x46, 0x69, 0x6e,
+	0x69, 0x73, 0x68, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43,
+	0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x12,
+	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x5f, 0x0a, 0x1a, 0x50, 0x6f, 0x73, 0x74, 0x44, 0x65, 0x70, 0x72, 0x6f, 0x76,
+	0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b,
+	0x12, 0x2d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x50, 0x6f,
+	0x73, 0x74, 0x44, 0x65, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67,
+	0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x15, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f, 0x6e, 0x69, 0x74,
+	0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x73, 0x12, 0x11, 0x2e, 0x61,
+	0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x29, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c, 0x69, 0x73,
+	0x74, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x72, 0x67, 0x65,
+	0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x57, 0x0a, 0x16, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x12, 0x29, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69,
+	0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x12, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a, 0x17, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x74, 0x66,
+	0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x11,
+	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x2b, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4c,
+	0x69, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67,
+	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xc6,
+	0x01, 0x5a, 0x14, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x2f, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x3b, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x92, 0x41, 0xac, 0x01, 0x12, 0x4c, 0x0a, 0x11, 0x47,
+	0x50, 0x4f, 0x52, 0x54, 0x41, 0x4c, 0x20, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x20, 0x41, 0x50, 0x49,
+	0x22, 0x30, 0x12, 0x16, 0x68, 0x74, 0x74, 0x70, 0x73, 0x3a, 0x2f, 0x2f, 0x67, 0x2d, 0x70, 0x6f,
+	0x72, 0x74, 0x61, 0x6c, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x1a, 0x16, 0x73, 0x75, 0x70, 0x70,
+	0x6f, 0x72, 0x74, 0x40, 0x67, 0x2d, 0x70, 0x6f, 0x72, 0x74, 0x61, 0x6c, 0x2e, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x32, 0x05, 0x30, 0x2e, 0x30, 0x2e, 0x31, 0x2a, 0x01, 0x02, 0x32, 0x10, 0x61, 0x70,
+	0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e, 0x3a, 0x10,
+	0x61, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x6a, 0x73, 0x6f, 0x6e,
+	0x5a, 0x23, 0x0a, 0x21, 0x0a, 0x0a, 0x41, 0x70, 0x69, 0x4b, 0x65, 0x79, 0x41, 0x75, 0x74, 0x68,
+	0x12, 0x13, 0x08, 0x02, 0x1a, 0x0d, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x20, 0x02, 0x62, 0x10, 0x0a, 0x0e, 0x0a, 0x0a, 0x41, 0x70, 0x69, 0x4b, 0x65,
+	0x79, 0x41, 0x75, 0x74, 0x68, 0x12, 0x00, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_service_proto_goTypes = []interface{}{
@@ -1051,78 +1044,77 @@ var file_service_proto_goTypes = []interface{}{
 	(*MetadataRequest)(nil),                            // 77: api.metadata.MetadataRequest
 	(*NetworkBootDataRequest)(nil),                     // 78: api.metadata.NetworkBootDataRequest
 	(*DHCPNetworksRequest)(nil),                        // 79: api.network.DHCPNetworksRequest
-	(*PushHardwareInventoryRequest)(nil),               // 80: api.hardware.PushHardwareInventoryRequest
-	(*UpdateMacAddressMappingRequest)(nil),             // 81: api.network.UpdateMacAddressMappingRequest
-	(*GetAutoRunScriptRequest)(nil),                    // 82: api.server.GetAutoRunScriptRequest
-	(*PostProvisioningCallbackRequest)(nil),            // 83: api.server.PostProvisioningCallbackRequest
-	(*FinishProvisioningCallbackRequest)(nil),          // 84: api.server.FinishProvisioningCallbackRequest
-	(*PostDeprovisioningCallbackRequest)(nil),          // 85: api.server.PostDeprovisioningCallbackRequest
-	(*UpdateMonitoringStatusRequest)(nil),              // 86: api.server.UpdateMonitoringStatusRequest
-	(*LoginResponse)(nil),                              // 87: api.user.LoginResponse
-	(*RegisterResponse)(nil),                           // 88: api.user.RegisterResponse
-	(*ListJwtPublicKeysResponse)(nil),                  // 89: api.jwt.ListJwtPublicKeysResponse
-	(*RefreshTokensResponse)(nil),                      // 90: api.user.RefreshTokensResponse
-	(*EmptyResponse)(nil),                              // 91: api.EmptyResponse
-	(*GetUserResponse)(nil),                            // 92: api.user.GetUserResponse
-	(*GetUserComputeLimitResponse)(nil),                // 93: api.user.GetUserComputeLimitResponse
-	(*UpdateUserResponse)(nil),                         // 94: api.user.UpdateUserResponse
-	(*User)(nil),                                       // 95: api.user.User
-	(*BeginWebAuthnRegistrationResponse)(nil),          // 96: api.user.BeginWebAuthnRegistrationResponse
-	(*FinishWebAuthnRegistrationResponse)(nil),         // 97: api.user.FinishWebAuthnRegistrationResponse
-	(*ListSessionsResponse)(nil),                       // 98: api.user.ListSessionsResponse
-	(*LongLivedToken)(nil),                             // 99: api.user.LongLivedToken
-	(*ListLongLivedTokensResponse)(nil),                // 100: api.user.ListLongLivedTokensResponse
-	(*Project)(nil),                                    // 101: api.project.Project
-	(*ProjectNotification)(nil),                        // 102: api.notification.ProjectNotification
-	(*GetProjectLogsResponse)(nil),                     // 103: api.project.GetProjectLogsResponse
-	(*GetProjectTrafficResponse)(nil),                  // 104: api.project.GetProjectTrafficResponse
-	(*GetProjectFlavoursResponse)(nil),                 // 105: api.flavour.GetProjectFlavoursResponse
-	(*InviteMemberToProjectResponse)(nil),              // 106: api.project.InviteMemberToProjectResponse
-	(*ListProjectsResponse)(nil),                       // 107: api.project.ListProjectsResponse
-	(*GetProjectCurrentBillingPreviewPdfResponse)(nil), // 108: api.project.GetProjectCurrentBillingPreviewPdfResponse
-	(*GetProjectBillPdfResponse)(nil),                  // 109: api.project.GetProjectBillPdfResponse
-	(*RedeemVoucherResponse)(nil),                      // 110: api.voucher.RedeemVoucherResponse
-	(*GetProjectCurrentBillingPreviewResponse)(nil),    // 111: api.project.GetProjectCurrentBillingPreviewResponse
-	(*GetProjectsOutstandingBalanceResponse)(nil),      // 112: api.project.GetProjectsOutstandingBalanceResponse
-	(*GetProjectBillsResponse)(nil),                    // 113: api.project.GetProjectBillsResponse
-	(*ListProjectSSHKeysResponse)(nil),                 // 114: api.project.ListProjectSSHKeysResponse
-	(*ListUserSSHKeysResponse)(nil),                    // 115: api.user.ListUserSSHKeysResponse
-	(*SSHKey)(nil),                                     // 116: api.security.SSHKey
-	(*SupportTicket)(nil),                              // 117: api.support.SupportTicket
-	(*ListProjectSupportTicketsResponse)(nil),          // 118: api.support.ListProjectSupportTicketsResponse
-	(*ListProjectSupportPackagesResponse)(nil),         // 119: api.support.ListProjectSupportPackagesResponse
-	(*CreateComputeResourceResponse)(nil),              // 120: api.compute.CreateComputeResourceResponse
-	(*ListComputeResourcesResponse)(nil),               // 121: api.compute.ListComputeResourcesResponse
-	(*ComputeResource)(nil),                            // 122: api.compute.ComputeResource
-	(*GetComputeResourceTrafficResponse)(nil),          // 123: api.compute.GetComputeResourceTrafficResponse
-	(*GetComputeResourceConsoleResponse)(nil),          // 124: api.compute.GetComputeResourceConsoleResponse
-	(*ListProjectNetworksResponse)(nil),                // 125: api.network.ListProjectNetworksResponse
-	(*Network)(nil),                                    // 126: api.network.Network
-	(*Subnet)(nil),                                     // 127: api.network.Subnet
-	(*Image)(nil),                                      // 128: api.image.Image
-	(*ListProjectImagesResponse)(nil),                  // 129: api.image.ListProjectImagesResponse
-	(*ListDataCenterResponse)(nil),                     // 130: api.region.ListDataCenterResponse
-	(*ListImagesResponse)(nil),                         // 131: api.image.ListImagesResponse
-	(*GetTwoFactorMethodsResponse)(nil),                // 132: api.user.GetTwoFactorMethodsResponse
-	(*CreateTOTPResponse)(nil),                         // 133: api.user.CreateTOTPResponse
-	(*RegenerateRecoveryCodesResponse)(nil),            // 134: api.user.RegenerateRecoveryCodesResponse
-	(*ListCreditCardsResponse)(nil),                    // 135: api.payment.ListCreditCardsResponse
-	(*AddCreditCardResponse)(nil),                      // 136: api.payment.AddCreditCardResponse
-	(*ListCountriesResponse)(nil),                      // 137: api.payment.ListCountriesResponse
-	(*BillingAddress)(nil),                             // 138: api.payment.BillingAddress
-	(*ListBillingAddressesResponse)(nil),               // 139: api.payment.ListBillingAddressesResponse
-	(*GetSplaPriceResponse)(nil),                       // 140: api.spla.GetSplaPriceResponse
-	(*GetVNCResponse)(nil),                             // 141: api.server.GetVNCResponse
-	(*ImageVersion)(nil),                               // 142: api.image.ImageVersion
-	(*Metadata)(nil),                                   // 143: api.metadata.Metadata
-	(*MetadataPasswordResponse)(nil),                   // 144: api.metadata.MetadataPasswordResponse
-	(*NetworkBootDataResponse)(nil),                    // 145: api.metadata.NetworkBootDataResponse
-	(*DHCPNetworksResponse)(nil),                       // 146: api.network.DHCPNetworksResponse
-	(*ListSwitchesResponse)(nil),                       // 147: api.network.ListSwitchesResponse
-	(*GetAutoRunScriptResponse)(nil),                   // 148: api.server.GetAutoRunScriptResponse
-	(*PostProvisioningCallbackResponse)(nil),           // 149: api.server.PostProvisioningCallbackResponse
-	(*ListMonitoringTargetsResponse)(nil),              // 150: api.server.ListMonitoringTargetsResponse
-	(*ListPlatformManagementsResponse)(nil),            // 151: api.server.ListPlatformManagementsResponse
+	(*UpdateMacAddressMappingRequest)(nil),             // 80: api.network.UpdateMacAddressMappingRequest
+	(*GetAutoRunScriptRequest)(nil),                    // 81: api.server.GetAutoRunScriptRequest
+	(*PostProvisioningCallbackRequest)(nil),            // 82: api.server.PostProvisioningCallbackRequest
+	(*FinishProvisioningCallbackRequest)(nil),          // 83: api.server.FinishProvisioningCallbackRequest
+	(*PostDeprovisioningCallbackRequest)(nil),          // 84: api.server.PostDeprovisioningCallbackRequest
+	(*UpdateMonitoringStatusRequest)(nil),              // 85: api.server.UpdateMonitoringStatusRequest
+	(*LoginResponse)(nil),                              // 86: api.user.LoginResponse
+	(*RegisterResponse)(nil),                           // 87: api.user.RegisterResponse
+	(*ListJwtPublicKeysResponse)(nil),                  // 88: api.jwt.ListJwtPublicKeysResponse
+	(*RefreshTokensResponse)(nil),                      // 89: api.user.RefreshTokensResponse
+	(*EmptyResponse)(nil),                              // 90: api.EmptyResponse
+	(*GetUserResponse)(nil),                            // 91: api.user.GetUserResponse
+	(*GetUserComputeLimitResponse)(nil),                // 92: api.user.GetUserComputeLimitResponse
+	(*UpdateUserResponse)(nil),                         // 93: api.user.UpdateUserResponse
+	(*User)(nil),                                       // 94: api.user.User
+	(*BeginWebAuthnRegistrationResponse)(nil),          // 95: api.user.BeginWebAuthnRegistrationResponse
+	(*FinishWebAuthnRegistrationResponse)(nil),         // 96: api.user.FinishWebAuthnRegistrationResponse
+	(*ListSessionsResponse)(nil),                       // 97: api.user.ListSessionsResponse
+	(*LongLivedToken)(nil),                             // 98: api.user.LongLivedToken
+	(*ListLongLivedTokensResponse)(nil),                // 99: api.user.ListLongLivedTokensResponse
+	(*Project)(nil),                                    // 100: api.project.Project
+	(*ProjectNotification)(nil),                        // 101: api.notification.ProjectNotification
+	(*GetProjectLogsResponse)(nil),                     // 102: api.project.GetProjectLogsResponse
+	(*GetProjectTrafficResponse)(nil),                  // 103: api.project.GetProjectTrafficResponse
+	(*GetProjectFlavoursResponse)(nil),                 // 104: api.flavour.GetProjectFlavoursResponse
+	(*InviteMemberToProjectResponse)(nil),              // 105: api.project.InviteMemberToProjectResponse
+	(*ListProjectsResponse)(nil),                       // 106: api.project.ListProjectsResponse
+	(*GetProjectCurrentBillingPreviewPdfResponse)(nil), // 107: api.project.GetProjectCurrentBillingPreviewPdfResponse
+	(*GetProjectBillPdfResponse)(nil),                  // 108: api.project.GetProjectBillPdfResponse
+	(*RedeemVoucherResponse)(nil),                      // 109: api.voucher.RedeemVoucherResponse
+	(*GetProjectCurrentBillingPreviewResponse)(nil),    // 110: api.project.GetProjectCurrentBillingPreviewResponse
+	(*GetProjectsOutstandingBalanceResponse)(nil),      // 111: api.project.GetProjectsOutstandingBalanceResponse
+	(*GetProjectBillsResponse)(nil),                    // 112: api.project.GetProjectBillsResponse
+	(*ListProjectSSHKeysResponse)(nil),                 // 113: api.project.ListProjectSSHKeysResponse
+	(*ListUserSSHKeysResponse)(nil),                    // 114: api.user.ListUserSSHKeysResponse
+	(*SSHKey)(nil),                                     // 115: api.security.SSHKey
+	(*SupportTicket)(nil),                              // 116: api.support.SupportTicket
+	(*ListProjectSupportTicketsResponse)(nil),          // 117: api.support.ListProjectSupportTicketsResponse
+	(*ListProjectSupportPackagesResponse)(nil),         // 118: api.support.ListProjectSupportPackagesResponse
+	(*CreateComputeResourceResponse)(nil),              // 119: api.compute.CreateComputeResourceResponse
+	(*ListComputeResourcesResponse)(nil),               // 120: api.compute.ListComputeResourcesResponse
+	(*ComputeResource)(nil),                            // 121: api.compute.ComputeResource
+	(*GetComputeResourceTrafficResponse)(nil),          // 122: api.compute.GetComputeResourceTrafficResponse
+	(*GetComputeResourceConsoleResponse)(nil),          // 123: api.compute.GetComputeResourceConsoleResponse
+	(*ListProjectNetworksResponse)(nil),                // 124: api.network.ListProjectNetworksResponse
+	(*Network)(nil),                                    // 125: api.network.Network
+	(*Subnet)(nil),                                     // 126: api.network.Subnet
+	(*Image)(nil),                                      // 127: api.image.Image
+	(*ListProjectImagesResponse)(nil),                  // 128: api.image.ListProjectImagesResponse
+	(*ListDataCenterResponse)(nil),                     // 129: api.region.ListDataCenterResponse
+	(*ListImagesResponse)(nil),                         // 130: api.image.ListImagesResponse
+	(*GetTwoFactorMethodsResponse)(nil),                // 131: api.user.GetTwoFactorMethodsResponse
+	(*CreateTOTPResponse)(nil),                         // 132: api.user.CreateTOTPResponse
+	(*RegenerateRecoveryCodesResponse)(nil),            // 133: api.user.RegenerateRecoveryCodesResponse
+	(*ListCreditCardsResponse)(nil),                    // 134: api.payment.ListCreditCardsResponse
+	(*AddCreditCardResponse)(nil),                      // 135: api.payment.AddCreditCardResponse
+	(*ListCountriesResponse)(nil),                      // 136: api.payment.ListCountriesResponse
+	(*BillingAddress)(nil),                             // 137: api.payment.BillingAddress
+	(*ListBillingAddressesResponse)(nil),               // 138: api.payment.ListBillingAddressesResponse
+	(*GetSplaPriceResponse)(nil),                       // 139: api.spla.GetSplaPriceResponse
+	(*GetVNCResponse)(nil),                             // 140: api.server.GetVNCResponse
+	(*ImageVersion)(nil),                               // 141: api.image.ImageVersion
+	(*Metadata)(nil),                                   // 142: api.metadata.Metadata
+	(*MetadataPasswordResponse)(nil),                   // 143: api.metadata.MetadataPasswordResponse
+	(*NetworkBootDataResponse)(nil),                    // 144: api.metadata.NetworkBootDataResponse
+	(*DHCPNetworksResponse)(nil),                       // 145: api.network.DHCPNetworksResponse
+	(*ListSwitchesResponse)(nil),                       // 146: api.network.ListSwitchesResponse
+	(*GetAutoRunScriptResponse)(nil),                   // 147: api.server.GetAutoRunScriptResponse
+	(*PostProvisioningCallbackResponse)(nil),           // 148: api.server.PostProvisioningCallbackResponse
+	(*ListMonitoringTargetsResponse)(nil),              // 149: api.server.ListMonitoringTargetsResponse
+	(*ListPlatformManagementsResponse)(nil),            // 150: api.server.ListPlatformManagementsResponse
 }
 var file_service_proto_depIdxs = []int32{
 	0,   // 0: api.PublicAPI.Login:input_type -> api.user.LoginRequest
@@ -1221,124 +1213,122 @@ var file_service_proto_depIdxs = []int32{
 	77,  // 93: api.ServiceAPI.GetMetadataPassword:input_type -> api.metadata.MetadataRequest
 	78,  // 94: api.ServiceAPI.GetNetworkBootData:input_type -> api.metadata.NetworkBootDataRequest
 	79,  // 95: api.ServiceAPI.GetDHCPNetworks:input_type -> api.network.DHCPNetworksRequest
-	80,  // 96: api.ServiceAPI.PushHardwareInventory:input_type -> api.hardware.PushHardwareInventoryRequest
-	2,   // 97: api.ServiceAPI.ListSwitches:input_type -> api.EmptyRequest
-	81,  // 98: api.ServiceAPI.UpdateMacAddressMapping:input_type -> api.network.UpdateMacAddressMappingRequest
-	82,  // 99: api.ServiceAPI.GetAutoRunScript:input_type -> api.server.GetAutoRunScriptRequest
-	83,  // 100: api.ServiceAPI.PostProvisioningCallback:input_type -> api.server.PostProvisioningCallbackRequest
-	84,  // 101: api.ServiceAPI.FinishProvisioningCallback:input_type -> api.server.FinishProvisioningCallbackRequest
-	85,  // 102: api.ServiceAPI.PostDeprovisioningCallback:input_type -> api.server.PostDeprovisioningCallbackRequest
-	2,   // 103: api.ServiceAPI.ListMonitoringTargets:input_type -> api.EmptyRequest
-	86,  // 104: api.ServiceAPI.UpdateMonitoringStatus:input_type -> api.server.UpdateMonitoringStatusRequest
-	2,   // 105: api.ServiceAPI.ListPlatformManagements:input_type -> api.EmptyRequest
-	87,  // 106: api.PublicAPI.Login:output_type -> api.user.LoginResponse
-	88,  // 107: api.PublicAPI.Register:output_type -> api.user.RegisterResponse
-	89,  // 108: api.PublicAPI.ListJwtPublicKeys:output_type -> api.jwt.ListJwtPublicKeysResponse
-	90,  // 109: api.PublicAPI.RefreshTokens:output_type -> api.user.RefreshTokensResponse
-	91,  // 110: api.PublicAPI.RequestPasswordForgottenToken:output_type -> api.EmptyResponse
-	91,  // 111: api.PublicAPI.ResetUserPassword:output_type -> api.EmptyResponse
-	92,  // 112: api.UserAPI.GetUser:output_type -> api.user.GetUserResponse
-	93,  // 113: api.UserAPI.GetUserComputeLimit:output_type -> api.user.GetUserComputeLimitResponse
-	94,  // 114: api.UserAPI.UpdateUser:output_type -> api.user.UpdateUserResponse
-	95,  // 115: api.UserAPI.ConfirmEMail:output_type -> api.user.User
-	91,  // 116: api.UserAPI.ResendConfirmEMail:output_type -> api.EmptyResponse
-	91,  // 117: api.UserAPI.ChangeUserPassword:output_type -> api.EmptyResponse
-	96,  // 118: api.UserAPI.BeginWebAuthnRegistration:output_type -> api.user.BeginWebAuthnRegistrationResponse
-	97,  // 119: api.UserAPI.FinishWebAuthnRegistration:output_type -> api.user.FinishWebAuthnRegistrationResponse
-	91,  // 120: api.UserAPI.DeleteWebAuthnDevice:output_type -> api.EmptyResponse
-	98,  // 121: api.UserAPI.ListSessions:output_type -> api.user.ListSessionsResponse
-	91,  // 122: api.UserAPI.DeleteSession:output_type -> api.EmptyResponse
-	99,  // 123: api.UserAPI.CreateLongLivedToken:output_type -> api.user.LongLivedToken
-	100, // 124: api.UserAPI.ListLongLivedTokens:output_type -> api.user.ListLongLivedTokensResponse
-	91,  // 125: api.UserAPI.RevokeLongLivedToken:output_type -> api.EmptyResponse
-	101, // 126: api.UserAPI.CreateProject:output_type -> api.project.Project
-	101, // 127: api.UserAPI.ChangeDefaultProject:output_type -> api.project.Project
-	101, // 128: api.UserAPI.GetProject:output_type -> api.project.Project
-	102, // 129: api.UserAPI.SubscribeProjectNotifications:output_type -> api.notification.ProjectNotification
-	103, // 130: api.UserAPI.GetProjectLogs:output_type -> api.project.GetProjectLogsResponse
-	104, // 131: api.UserAPI.GetProjectTraffic:output_type -> api.project.GetProjectTrafficResponse
-	105, // 132: api.UserAPI.GetProjectFlavours:output_type -> api.flavour.GetProjectFlavoursResponse
-	101, // 133: api.UserAPI.UpdateProject:output_type -> api.project.Project
-	91,  // 134: api.UserAPI.JoinProject:output_type -> api.EmptyResponse
-	91,  // 135: api.UserAPI.LeaveProject:output_type -> api.EmptyResponse
-	106, // 136: api.UserAPI.InviteMemberToProject:output_type -> api.project.InviteMemberToProjectResponse
-	91,  // 137: api.UserAPI.RemoveMemberFromProject:output_type -> api.EmptyResponse
-	107, // 138: api.UserAPI.ListProjects:output_type -> api.project.ListProjectsResponse
-	91,  // 139: api.UserAPI.DeleteProject:output_type -> api.EmptyResponse
-	108, // 140: api.UserAPI.GetProjectCurrentBillingPreviewPdf:output_type -> api.project.GetProjectCurrentBillingPreviewPdfResponse
-	109, // 141: api.UserAPI.GetProjectBillPdf:output_type -> api.project.GetProjectBillPdfResponse
-	110, // 142: api.UserAPI.RedeemVoucher:output_type -> api.voucher.RedeemVoucherResponse
-	91,  // 143: api.UserAPI.PayProjectNow:output_type -> api.EmptyResponse
-	111, // 144: api.UserAPI.GetProjectCurrentBillingPreview:output_type -> api.project.GetProjectCurrentBillingPreviewResponse
-	112, // 145: api.UserAPI.GetProjectsOutstandingBalance:output_type -> api.project.GetProjectsOutstandingBalanceResponse
-	113, // 146: api.UserAPI.GetProjectBills:output_type -> api.project.GetProjectBillsResponse
-	114, // 147: api.UserAPI.ListProjectSSHKeys:output_type -> api.project.ListProjectSSHKeysResponse
-	115, // 148: api.UserAPI.ListUserSSHKeys:output_type -> api.user.ListUserSSHKeysResponse
-	116, // 149: api.UserAPI.CreateUserSSHKey:output_type -> api.security.SSHKey
-	91,  // 150: api.UserAPI.DeleteUserSSHKey:output_type -> api.EmptyResponse
-	117, // 151: api.UserAPI.CreateProjectSupportTicket:output_type -> api.support.SupportTicket
-	117, // 152: api.UserAPI.GetProjectSupportTicket:output_type -> api.support.SupportTicket
-	118, // 153: api.UserAPI.ListProjectSupportTickets:output_type -> api.support.ListProjectSupportTicketsResponse
-	91,  // 154: api.UserAPI.CloseProjectSupportTicket:output_type -> api.EmptyResponse
-	117, // 155: api.UserAPI.AddProjectSupportTicketComment:output_type -> api.support.SupportTicket
-	91,  // 156: api.UserAPI.ChangeProjectSupportPackage:output_type -> api.EmptyResponse
-	119, // 157: api.UserAPI.ListProjectSupportPackages:output_type -> api.support.ListProjectSupportPackagesResponse
-	120, // 158: api.UserAPI.CreateComputeResource:output_type -> api.compute.CreateComputeResourceResponse
-	121, // 159: api.UserAPI.ListComputeResources:output_type -> api.compute.ListComputeResourcesResponse
-	122, // 160: api.UserAPI.GetComputeResource:output_type -> api.compute.ComputeResource
-	123, // 161: api.UserAPI.GetComputeResourceTraffic:output_type -> api.compute.GetComputeResourceTrafficResponse
-	122, // 162: api.UserAPI.UpdateComputeResource:output_type -> api.compute.ComputeResource
-	124, // 163: api.UserAPI.GetComputeResourceConsole:output_type -> api.compute.GetComputeResourceConsoleResponse
-	91,  // 164: api.UserAPI.ChangeComputeResourceRescueMode:output_type -> api.EmptyResponse
-	91,  // 165: api.UserAPI.PowerActionComputeResource:output_type -> api.EmptyResponse
-	122, // 166: api.UserAPI.ReinstallComputeResource:output_type -> api.compute.ComputeResource
-	91,  // 167: api.UserAPI.DestroyComputeResource:output_type -> api.EmptyResponse
-	125, // 168: api.UserAPI.ListProjectNetworks:output_type -> api.network.ListProjectNetworksResponse
-	126, // 169: api.UserAPI.GetProjectNetwork:output_type -> api.network.Network
-	126, // 170: api.UserAPI.UpdateProjectNetwork:output_type -> api.network.Network
-	127, // 171: api.UserAPI.CreateProjectNetworkSubnet:output_type -> api.network.Subnet
-	127, // 172: api.UserAPI.UpdateProjectNetworkSubnet:output_type -> api.network.Subnet
-	91,  // 173: api.UserAPI.DeleteProjectNetworkSubnet:output_type -> api.EmptyResponse
-	128, // 174: api.UserAPI.CreateProjectImage:output_type -> api.image.Image
-	129, // 175: api.UserAPI.ListProjectImages:output_type -> api.image.ListProjectImagesResponse
-	128, // 176: api.UserAPI.GetProjectImage:output_type -> api.image.Image
-	91,  // 177: api.UserAPI.DeleteProjectImage:output_type -> api.EmptyResponse
-	91,  // 178: api.UserAPI.DeleteProjectImageVersion:output_type -> api.EmptyResponse
-	130, // 179: api.UserAPI.ListDataCenters:output_type -> api.region.ListDataCenterResponse
-	131, // 180: api.UserAPI.ListPublicImages:output_type -> api.image.ListImagesResponse
-	132, // 181: api.UserAPI.GetTwoFactorMethods:output_type -> api.user.GetTwoFactorMethodsResponse
-	133, // 182: api.UserAPI.CreateTOTP:output_type -> api.user.CreateTOTPResponse
-	91,  // 183: api.UserAPI.RemoveTOTP:output_type -> api.EmptyResponse
-	91,  // 184: api.UserAPI.AddTOTP:output_type -> api.EmptyResponse
-	134, // 185: api.UserAPI.RegenerateRecoveryCodes:output_type -> api.user.RegenerateRecoveryCodesResponse
-	135, // 186: api.UserAPI.ListCreditCards:output_type -> api.payment.ListCreditCardsResponse
-	136, // 187: api.UserAPI.AddCreditCard:output_type -> api.payment.AddCreditCardResponse
-	91,  // 188: api.UserAPI.DeleteCreditCard:output_type -> api.EmptyResponse
-	137, // 189: api.UserAPI.ListCountries:output_type -> api.payment.ListCountriesResponse
-	138, // 190: api.UserAPI.CreateBillingAddress:output_type -> api.payment.BillingAddress
-	139, // 191: api.UserAPI.ListBillingAddresses:output_type -> api.payment.ListBillingAddressesResponse
-	91,  // 192: api.UserAPI.DeleteBillingAddress:output_type -> api.EmptyResponse
-	140, // 193: api.UserAPI.GetSplaPrice:output_type -> api.spla.GetSplaPriceResponse
-	141, // 194: api.GatewayAPI.GetVnc:output_type -> api.server.GetVNCResponse
-	89,  // 195: api.GatewayAPI.ListJwtPublicKeys:output_type -> api.jwt.ListJwtPublicKeysResponse
-	142, // 196: api.GatewayAPI.ImageUploadValidate:output_type -> api.image.ImageVersion
-	91,  // 197: api.GatewayAPI.ImageUploadConfirm:output_type -> api.EmptyResponse
-	143, // 198: api.ServiceAPI.GetMetadata:output_type -> api.metadata.Metadata
-	144, // 199: api.ServiceAPI.GetMetadataPassword:output_type -> api.metadata.MetadataPasswordResponse
-	145, // 200: api.ServiceAPI.GetNetworkBootData:output_type -> api.metadata.NetworkBootDataResponse
-	146, // 201: api.ServiceAPI.GetDHCPNetworks:output_type -> api.network.DHCPNetworksResponse
-	91,  // 202: api.ServiceAPI.PushHardwareInventory:output_type -> api.EmptyResponse
-	147, // 203: api.ServiceAPI.ListSwitches:output_type -> api.network.ListSwitchesResponse
-	91,  // 204: api.ServiceAPI.UpdateMacAddressMapping:output_type -> api.EmptyResponse
-	148, // 205: api.ServiceAPI.GetAutoRunScript:output_type -> api.server.GetAutoRunScriptResponse
-	149, // 206: api.ServiceAPI.PostProvisioningCallback:output_type -> api.server.PostProvisioningCallbackResponse
-	91,  // 207: api.ServiceAPI.FinishProvisioningCallback:output_type -> api.EmptyResponse
-	91,  // 208: api.ServiceAPI.PostDeprovisioningCallback:output_type -> api.EmptyResponse
-	150, // 209: api.ServiceAPI.ListMonitoringTargets:output_type -> api.server.ListMonitoringTargetsResponse
-	91,  // 210: api.ServiceAPI.UpdateMonitoringStatus:output_type -> api.EmptyResponse
-	151, // 211: api.ServiceAPI.ListPlatformManagements:output_type -> api.server.ListPlatformManagementsResponse
-	106, // [106:212] is the sub-list for method output_type
-	0,   // [0:106] is the sub-list for method input_type
+	2,   // 96: api.ServiceAPI.ListSwitches:input_type -> api.EmptyRequest
+	80,  // 97: api.ServiceAPI.UpdateMacAddressMapping:input_type -> api.network.UpdateMacAddressMappingRequest
+	81,  // 98: api.ServiceAPI.GetAutoRunScript:input_type -> api.server.GetAutoRunScriptRequest
+	82,  // 99: api.ServiceAPI.PostProvisioningCallback:input_type -> api.server.PostProvisioningCallbackRequest
+	83,  // 100: api.ServiceAPI.FinishProvisioningCallback:input_type -> api.server.FinishProvisioningCallbackRequest
+	84,  // 101: api.ServiceAPI.PostDeprovisioningCallback:input_type -> api.server.PostDeprovisioningCallbackRequest
+	2,   // 102: api.ServiceAPI.ListMonitoringTargets:input_type -> api.EmptyRequest
+	85,  // 103: api.ServiceAPI.UpdateMonitoringStatus:input_type -> api.server.UpdateMonitoringStatusRequest
+	2,   // 104: api.ServiceAPI.ListPlatformManagements:input_type -> api.EmptyRequest
+	86,  // 105: api.PublicAPI.Login:output_type -> api.user.LoginResponse
+	87,  // 106: api.PublicAPI.Register:output_type -> api.user.RegisterResponse
+	88,  // 107: api.PublicAPI.ListJwtPublicKeys:output_type -> api.jwt.ListJwtPublicKeysResponse
+	89,  // 108: api.PublicAPI.RefreshTokens:output_type -> api.user.RefreshTokensResponse
+	90,  // 109: api.PublicAPI.RequestPasswordForgottenToken:output_type -> api.EmptyResponse
+	90,  // 110: api.PublicAPI.ResetUserPassword:output_type -> api.EmptyResponse
+	91,  // 111: api.UserAPI.GetUser:output_type -> api.user.GetUserResponse
+	92,  // 112: api.UserAPI.GetUserComputeLimit:output_type -> api.user.GetUserComputeLimitResponse
+	93,  // 113: api.UserAPI.UpdateUser:output_type -> api.user.UpdateUserResponse
+	94,  // 114: api.UserAPI.ConfirmEMail:output_type -> api.user.User
+	90,  // 115: api.UserAPI.ResendConfirmEMail:output_type -> api.EmptyResponse
+	90,  // 116: api.UserAPI.ChangeUserPassword:output_type -> api.EmptyResponse
+	95,  // 117: api.UserAPI.BeginWebAuthnRegistration:output_type -> api.user.BeginWebAuthnRegistrationResponse
+	96,  // 118: api.UserAPI.FinishWebAuthnRegistration:output_type -> api.user.FinishWebAuthnRegistrationResponse
+	90,  // 119: api.UserAPI.DeleteWebAuthnDevice:output_type -> api.EmptyResponse
+	97,  // 120: api.UserAPI.ListSessions:output_type -> api.user.ListSessionsResponse
+	90,  // 121: api.UserAPI.DeleteSession:output_type -> api.EmptyResponse
+	98,  // 122: api.UserAPI.CreateLongLivedToken:output_type -> api.user.LongLivedToken
+	99,  // 123: api.UserAPI.ListLongLivedTokens:output_type -> api.user.ListLongLivedTokensResponse
+	90,  // 124: api.UserAPI.RevokeLongLivedToken:output_type -> api.EmptyResponse
+	100, // 125: api.UserAPI.CreateProject:output_type -> api.project.Project
+	100, // 126: api.UserAPI.ChangeDefaultProject:output_type -> api.project.Project
+	100, // 127: api.UserAPI.GetProject:output_type -> api.project.Project
+	101, // 128: api.UserAPI.SubscribeProjectNotifications:output_type -> api.notification.ProjectNotification
+	102, // 129: api.UserAPI.GetProjectLogs:output_type -> api.project.GetProjectLogsResponse
+	103, // 130: api.UserAPI.GetProjectTraffic:output_type -> api.project.GetProjectTrafficResponse
+	104, // 131: api.UserAPI.GetProjectFlavours:output_type -> api.flavour.GetProjectFlavoursResponse
+	100, // 132: api.UserAPI.UpdateProject:output_type -> api.project.Project
+	90,  // 133: api.UserAPI.JoinProject:output_type -> api.EmptyResponse
+	90,  // 134: api.UserAPI.LeaveProject:output_type -> api.EmptyResponse
+	105, // 135: api.UserAPI.InviteMemberToProject:output_type -> api.project.InviteMemberToProjectResponse
+	90,  // 136: api.UserAPI.RemoveMemberFromProject:output_type -> api.EmptyResponse
+	106, // 137: api.UserAPI.ListProjects:output_type -> api.project.ListProjectsResponse
+	90,  // 138: api.UserAPI.DeleteProject:output_type -> api.EmptyResponse
+	107, // 139: api.UserAPI.GetProjectCurrentBillingPreviewPdf:output_type -> api.project.GetProjectCurrentBillingPreviewPdfResponse
+	108, // 140: api.UserAPI.GetProjectBillPdf:output_type -> api.project.GetProjectBillPdfResponse
+	109, // 141: api.UserAPI.RedeemVoucher:output_type -> api.voucher.RedeemVoucherResponse
+	90,  // 142: api.UserAPI.PayProjectNow:output_type -> api.EmptyResponse
+	110, // 143: api.UserAPI.GetProjectCurrentBillingPreview:output_type -> api.project.GetProjectCurrentBillingPreviewResponse
+	111, // 144: api.UserAPI.GetProjectsOutstandingBalance:output_type -> api.project.GetProjectsOutstandingBalanceResponse
+	112, // 145: api.UserAPI.GetProjectBills:output_type -> api.project.GetProjectBillsResponse
+	113, // 146: api.UserAPI.ListProjectSSHKeys:output_type -> api.project.ListProjectSSHKeysResponse
+	114, // 147: api.UserAPI.ListUserSSHKeys:output_type -> api.user.ListUserSSHKeysResponse
+	115, // 148: api.UserAPI.CreateUserSSHKey:output_type -> api.security.SSHKey
+	90,  // 149: api.UserAPI.DeleteUserSSHKey:output_type -> api.EmptyResponse
+	116, // 150: api.UserAPI.CreateProjectSupportTicket:output_type -> api.support.SupportTicket
+	116, // 151: api.UserAPI.GetProjectSupportTicket:output_type -> api.support.SupportTicket
+	117, // 152: api.UserAPI.ListProjectSupportTickets:output_type -> api.support.ListProjectSupportTicketsResponse
+	90,  // 153: api.UserAPI.CloseProjectSupportTicket:output_type -> api.EmptyResponse
+	116, // 154: api.UserAPI.AddProjectSupportTicketComment:output_type -> api.support.SupportTicket
+	90,  // 155: api.UserAPI.ChangeProjectSupportPackage:output_type -> api.EmptyResponse
+	118, // 156: api.UserAPI.ListProjectSupportPackages:output_type -> api.support.ListProjectSupportPackagesResponse
+	119, // 157: api.UserAPI.CreateComputeResource:output_type -> api.compute.CreateComputeResourceResponse
+	120, // 158: api.UserAPI.ListComputeResources:output_type -> api.compute.ListComputeResourcesResponse
+	121, // 159: api.UserAPI.GetComputeResource:output_type -> api.compute.ComputeResource
+	122, // 160: api.UserAPI.GetComputeResourceTraffic:output_type -> api.compute.GetComputeResourceTrafficResponse
+	121, // 161: api.UserAPI.UpdateComputeResource:output_type -> api.compute.ComputeResource
+	123, // 162: api.UserAPI.GetComputeResourceConsole:output_type -> api.compute.GetComputeResourceConsoleResponse
+	90,  // 163: api.UserAPI.ChangeComputeResourceRescueMode:output_type -> api.EmptyResponse
+	90,  // 164: api.UserAPI.PowerActionComputeResource:output_type -> api.EmptyResponse
+	121, // 165: api.UserAPI.ReinstallComputeResource:output_type -> api.compute.ComputeResource
+	90,  // 166: api.UserAPI.DestroyComputeResource:output_type -> api.EmptyResponse
+	124, // 167: api.UserAPI.ListProjectNetworks:output_type -> api.network.ListProjectNetworksResponse
+	125, // 168: api.UserAPI.GetProjectNetwork:output_type -> api.network.Network
+	125, // 169: api.UserAPI.UpdateProjectNetwork:output_type -> api.network.Network
+	126, // 170: api.UserAPI.CreateProjectNetworkSubnet:output_type -> api.network.Subnet
+	126, // 171: api.UserAPI.UpdateProjectNetworkSubnet:output_type -> api.network.Subnet
+	90,  // 172: api.UserAPI.DeleteProjectNetworkSubnet:output_type -> api.EmptyResponse
+	127, // 173: api.UserAPI.CreateProjectImage:output_type -> api.image.Image
+	128, // 174: api.UserAPI.ListProjectImages:output_type -> api.image.ListProjectImagesResponse
+	127, // 175: api.UserAPI.GetProjectImage:output_type -> api.image.Image
+	90,  // 176: api.UserAPI.DeleteProjectImage:output_type -> api.EmptyResponse
+	90,  // 177: api.UserAPI.DeleteProjectImageVersion:output_type -> api.EmptyResponse
+	129, // 178: api.UserAPI.ListDataCenters:output_type -> api.region.ListDataCenterResponse
+	130, // 179: api.UserAPI.ListPublicImages:output_type -> api.image.ListImagesResponse
+	131, // 180: api.UserAPI.GetTwoFactorMethods:output_type -> api.user.GetTwoFactorMethodsResponse
+	132, // 181: api.UserAPI.CreateTOTP:output_type -> api.user.CreateTOTPResponse
+	90,  // 182: api.UserAPI.RemoveTOTP:output_type -> api.EmptyResponse
+	90,  // 183: api.UserAPI.AddTOTP:output_type -> api.EmptyResponse
+	133, // 184: api.UserAPI.RegenerateRecoveryCodes:output_type -> api.user.RegenerateRecoveryCodesResponse
+	134, // 185: api.UserAPI.ListCreditCards:output_type -> api.payment.ListCreditCardsResponse
+	135, // 186: api.UserAPI.AddCreditCard:output_type -> api.payment.AddCreditCardResponse
+	90,  // 187: api.UserAPI.DeleteCreditCard:output_type -> api.EmptyResponse
+	136, // 188: api.UserAPI.ListCountries:output_type -> api.payment.ListCountriesResponse
+	137, // 189: api.UserAPI.CreateBillingAddress:output_type -> api.payment.BillingAddress
+	138, // 190: api.UserAPI.ListBillingAddresses:output_type -> api.payment.ListBillingAddressesResponse
+	90,  // 191: api.UserAPI.DeleteBillingAddress:output_type -> api.EmptyResponse
+	139, // 192: api.UserAPI.GetSplaPrice:output_type -> api.spla.GetSplaPriceResponse
+	140, // 193: api.GatewayAPI.GetVnc:output_type -> api.server.GetVNCResponse
+	88,  // 194: api.GatewayAPI.ListJwtPublicKeys:output_type -> api.jwt.ListJwtPublicKeysResponse
+	141, // 195: api.GatewayAPI.ImageUploadValidate:output_type -> api.image.ImageVersion
+	90,  // 196: api.GatewayAPI.ImageUploadConfirm:output_type -> api.EmptyResponse
+	142, // 197: api.ServiceAPI.GetMetadata:output_type -> api.metadata.Metadata
+	143, // 198: api.ServiceAPI.GetMetadataPassword:output_type -> api.metadata.MetadataPasswordResponse
+	144, // 199: api.ServiceAPI.GetNetworkBootData:output_type -> api.metadata.NetworkBootDataResponse
+	145, // 200: api.ServiceAPI.GetDHCPNetworks:output_type -> api.network.DHCPNetworksResponse
+	146, // 201: api.ServiceAPI.ListSwitches:output_type -> api.network.ListSwitchesResponse
+	90,  // 202: api.ServiceAPI.UpdateMacAddressMapping:output_type -> api.EmptyResponse
+	147, // 203: api.ServiceAPI.GetAutoRunScript:output_type -> api.server.GetAutoRunScriptResponse
+	148, // 204: api.ServiceAPI.PostProvisioningCallback:output_type -> api.server.PostProvisioningCallbackResponse
+	90,  // 205: api.ServiceAPI.FinishProvisioningCallback:output_type -> api.EmptyResponse
+	90,  // 206: api.ServiceAPI.PostDeprovisioningCallback:output_type -> api.EmptyResponse
+	149, // 207: api.ServiceAPI.ListMonitoringTargets:output_type -> api.server.ListMonitoringTargetsResponse
+	90,  // 208: api.ServiceAPI.UpdateMonitoringStatus:output_type -> api.EmptyResponse
+	150, // 209: api.ServiceAPI.ListPlatformManagements:output_type -> api.server.ListPlatformManagementsResponse
+	105, // [105:210] is the sub-list for method output_type
+	0,   // [0:105] is the sub-list for method input_type
 	0,   // [0:0] is the sub-list for extension type_name
 	0,   // [0:0] is the sub-list for extension extendee
 	0,   // [0:0] is the sub-list for field type_name
@@ -1352,7 +1342,6 @@ func file_service_proto_init() {
 	file_metadata_proto_init()
 	file_image_proto_init()
 	file_network_proto_init()
-	file_hardware_proto_init()
 	file_generic_proto_init()
 	file_security_proto_init()
 	file_project_proto_init()

@@ -3760,8 +3760,6 @@ type ServiceAPIClient interface {
 	GetNetworkBootData(ctx context.Context, in *NetworkBootDataRequest, opts ...grpc.CallOption) (*NetworkBootDataResponse, error)
 	// GetDHCPNetworks Returns all DHCP network information
 	GetDHCPNetworks(ctx context.Context, in *DHCPNetworksRequest, opts ...grpc.CallOption) (*DHCPNetworksResponse, error)
-	// PushHardwareInventory Push hardware inventory to database
-	PushHardwareInventory(ctx context.Context, in *PushHardwareInventoryRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
 	// ListSwitches List all switches for agent
 	ListSwitches(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListSwitchesResponse, error)
 	// ListSwitches List all switches for agent
@@ -3820,15 +3818,6 @@ func (c *serviceAPIClient) GetNetworkBootData(ctx context.Context, in *NetworkBo
 func (c *serviceAPIClient) GetDHCPNetworks(ctx context.Context, in *DHCPNetworksRequest, opts ...grpc.CallOption) (*DHCPNetworksResponse, error) {
 	out := new(DHCPNetworksResponse)
 	err := c.cc.Invoke(ctx, "/api.ServiceAPI/GetDHCPNetworks", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAPIClient) PushHardwareInventory(ctx context.Context, in *PushHardwareInventoryRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/PushHardwareInventory", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3928,8 +3917,6 @@ type ServiceAPIServer interface {
 	GetNetworkBootData(context.Context, *NetworkBootDataRequest) (*NetworkBootDataResponse, error)
 	// GetDHCPNetworks Returns all DHCP network information
 	GetDHCPNetworks(context.Context, *DHCPNetworksRequest) (*DHCPNetworksResponse, error)
-	// PushHardwareInventory Push hardware inventory to database
-	PushHardwareInventory(context.Context, *PushHardwareInventoryRequest) (*EmptyResponse, error)
 	// ListSwitches List all switches for agent
 	ListSwitches(context.Context, *EmptyRequest) (*ListSwitchesResponse, error)
 	// ListSwitches List all switches for agent
@@ -3966,9 +3953,6 @@ func (UnimplementedServiceAPIServer) GetNetworkBootData(context.Context, *Networ
 }
 func (UnimplementedServiceAPIServer) GetDHCPNetworks(context.Context, *DHCPNetworksRequest) (*DHCPNetworksResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDHCPNetworks not implemented")
-}
-func (UnimplementedServiceAPIServer) PushHardwareInventory(context.Context, *PushHardwareInventoryRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PushHardwareInventory not implemented")
 }
 func (UnimplementedServiceAPIServer) ListSwitches(context.Context, *EmptyRequest) (*ListSwitchesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSwitches not implemented")
@@ -4078,24 +4062,6 @@ func _ServiceAPI_GetDHCPNetworks_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ServiceAPIServer).GetDHCPNetworks(ctx, req.(*DHCPNetworksRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAPI_PushHardwareInventory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PushHardwareInventoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAPIServer).PushHardwareInventory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.ServiceAPI/PushHardwareInventory",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).PushHardwareInventory(ctx, req.(*PushHardwareInventoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4284,10 +4250,6 @@ var ServiceAPI_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetDHCPNetworks",
 			Handler:    _ServiceAPI_GetDHCPNetworks_Handler,
-		},
-		{
-			MethodName: "PushHardwareInventory",
-			Handler:    _ServiceAPI_PushHardwareInventory_Handler,
 		},
 		{
 			MethodName: "ListSwitches",
