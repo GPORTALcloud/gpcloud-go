@@ -18,16 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NetworkAgentServiceClient interface {
-	// RebootServer Reboots the server via Platform Management
-	ConfigureSwitchPort(ctx context.Context, in *ConfigureSwitchPortRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// RebootServer Reboots the server via Platform Management
-	RebootServer(ctx context.Context, in *RebootServerRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// ShutOffServer Shutdowns the server via Platform Management
-	ShutOffServer(ctx context.Context, in *ShutOffServerRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// UpdateDHCP Updates the DHCP server config and reloads it
-	UpdateDHCP(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// ConfigurePlatformManagement Configures the platform management
-	ConfigurePlatformManagement(ctx context.Context, in *ConfigurePlatformManagementRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error)
+	QueueJob(ctx context.Context, in *QueueJobRequest, opts ...grpc.CallOption) (*QueueJobResponse, error)
 }
 
 type networkAgentServiceClient struct {
@@ -38,45 +30,18 @@ func NewNetworkAgentServiceClient(cc grpc.ClientConnInterface) NetworkAgentServi
 	return &networkAgentServiceClient{cc}
 }
 
-func (c *networkAgentServiceClient) ConfigureSwitchPort(ctx context.Context, in *ConfigureSwitchPortRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/ConfigureSwitchPort", in, out, opts...)
+func (c *networkAgentServiceClient) GetJob(ctx context.Context, in *GetJobRequest, opts ...grpc.CallOption) (*GetJobResponse, error) {
+	out := new(GetJobResponse)
+	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/GetJob", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *networkAgentServiceClient) RebootServer(ctx context.Context, in *RebootServerRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/RebootServer", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *networkAgentServiceClient) ShutOffServer(ctx context.Context, in *ShutOffServerRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/ShutOffServer", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *networkAgentServiceClient) UpdateDHCP(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/UpdateDHCP", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *networkAgentServiceClient) ConfigurePlatformManagement(ctx context.Context, in *ConfigurePlatformManagementRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/ConfigurePlatformManagement", in, out, opts...)
+func (c *networkAgentServiceClient) QueueJob(ctx context.Context, in *QueueJobRequest, opts ...grpc.CallOption) (*QueueJobResponse, error) {
+	out := new(QueueJobResponse)
+	err := c.cc.Invoke(ctx, "/api.NetworkAgentService/QueueJob", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,16 +52,8 @@ func (c *networkAgentServiceClient) ConfigurePlatformManagement(ctx context.Cont
 // All implementations must embed UnimplementedNetworkAgentServiceServer
 // for forward compatibility
 type NetworkAgentServiceServer interface {
-	// RebootServer Reboots the server via Platform Management
-	ConfigureSwitchPort(context.Context, *ConfigureSwitchPortRequest) (*EmptyResponse, error)
-	// RebootServer Reboots the server via Platform Management
-	RebootServer(context.Context, *RebootServerRequest) (*EmptyResponse, error)
-	// ShutOffServer Shutdowns the server via Platform Management
-	ShutOffServer(context.Context, *ShutOffServerRequest) (*EmptyResponse, error)
-	// UpdateDHCP Updates the DHCP server config and reloads it
-	UpdateDHCP(context.Context, *EmptyRequest) (*EmptyResponse, error)
-	// ConfigurePlatformManagement Configures the platform management
-	ConfigurePlatformManagement(context.Context, *ConfigurePlatformManagementRequest) (*EmptyResponse, error)
+	GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error)
+	QueueJob(context.Context, *QueueJobRequest) (*QueueJobResponse, error)
 	mustEmbedUnimplementedNetworkAgentServiceServer()
 }
 
@@ -104,20 +61,11 @@ type NetworkAgentServiceServer interface {
 type UnimplementedNetworkAgentServiceServer struct {
 }
 
-func (UnimplementedNetworkAgentServiceServer) ConfigureSwitchPort(context.Context, *ConfigureSwitchPortRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfigureSwitchPort not implemented")
+func (UnimplementedNetworkAgentServiceServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetJob not implemented")
 }
-func (UnimplementedNetworkAgentServiceServer) RebootServer(context.Context, *RebootServerRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RebootServer not implemented")
-}
-func (UnimplementedNetworkAgentServiceServer) ShutOffServer(context.Context, *ShutOffServerRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ShutOffServer not implemented")
-}
-func (UnimplementedNetworkAgentServiceServer) UpdateDHCP(context.Context, *EmptyRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateDHCP not implemented")
-}
-func (UnimplementedNetworkAgentServiceServer) ConfigurePlatformManagement(context.Context, *ConfigurePlatformManagementRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfigurePlatformManagement not implemented")
+func (UnimplementedNetworkAgentServiceServer) QueueJob(context.Context, *QueueJobRequest) (*QueueJobResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueueJob not implemented")
 }
 func (UnimplementedNetworkAgentServiceServer) mustEmbedUnimplementedNetworkAgentServiceServer() {}
 
@@ -132,92 +80,38 @@ func RegisterNetworkAgentServiceServer(s grpc.ServiceRegistrar, srv NetworkAgent
 	s.RegisterService(&NetworkAgentService_ServiceDesc, srv)
 }
 
-func _NetworkAgentService_ConfigureSwitchPort_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfigureSwitchPortRequest)
+func _NetworkAgentService_GetJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NetworkAgentServiceServer).ConfigureSwitchPort(ctx, in)
+		return srv.(NetworkAgentServiceServer).GetJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.NetworkAgentService/ConfigureSwitchPort",
+		FullMethod: "/api.NetworkAgentService/GetJob",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkAgentServiceServer).ConfigureSwitchPort(ctx, req.(*ConfigureSwitchPortRequest))
+		return srv.(NetworkAgentServiceServer).GetJob(ctx, req.(*GetJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NetworkAgentService_RebootServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RebootServerRequest)
+func _NetworkAgentService_QueueJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueueJobRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NetworkAgentServiceServer).RebootServer(ctx, in)
+		return srv.(NetworkAgentServiceServer).QueueJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.NetworkAgentService/RebootServer",
+		FullMethod: "/api.NetworkAgentService/QueueJob",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkAgentServiceServer).RebootServer(ctx, req.(*RebootServerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NetworkAgentService_ShutOffServer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ShutOffServerRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NetworkAgentServiceServer).ShutOffServer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.NetworkAgentService/ShutOffServer",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkAgentServiceServer).ShutOffServer(ctx, req.(*ShutOffServerRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NetworkAgentService_UpdateDHCP_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NetworkAgentServiceServer).UpdateDHCP(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.NetworkAgentService/UpdateDHCP",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkAgentServiceServer).UpdateDHCP(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _NetworkAgentService_ConfigurePlatformManagement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfigurePlatformManagementRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NetworkAgentServiceServer).ConfigurePlatformManagement(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.NetworkAgentService/ConfigurePlatformManagement",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NetworkAgentServiceServer).ConfigurePlatformManagement(ctx, req.(*ConfigurePlatformManagementRequest))
+		return srv.(NetworkAgentServiceServer).QueueJob(ctx, req.(*QueueJobRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -230,24 +124,12 @@ var NetworkAgentService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NetworkAgentServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ConfigureSwitchPort",
-			Handler:    _NetworkAgentService_ConfigureSwitchPort_Handler,
+			MethodName: "GetJob",
+			Handler:    _NetworkAgentService_GetJob_Handler,
 		},
 		{
-			MethodName: "RebootServer",
-			Handler:    _NetworkAgentService_RebootServer_Handler,
-		},
-		{
-			MethodName: "ShutOffServer",
-			Handler:    _NetworkAgentService_ShutOffServer_Handler,
-		},
-		{
-			MethodName: "UpdateDHCP",
-			Handler:    _NetworkAgentService_UpdateDHCP_Handler,
-		},
-		{
-			MethodName: "ConfigurePlatformManagement",
-			Handler:    _NetworkAgentService_ConfigurePlatformManagement_Handler,
+			MethodName: "QueueJob",
+			Handler:    _NetworkAgentService_QueueJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

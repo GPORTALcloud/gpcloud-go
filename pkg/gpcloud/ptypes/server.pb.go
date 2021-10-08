@@ -92,6 +92,7 @@ const (
 	ServerJob_DEPRO   ServerJob = 1
 	ServerJob_PM      ServerJob = 2
 	ServerJob_SW      ServerJob = 3
+	ServerJob_IMPORT  ServerJob = 4
 )
 
 // Enum value maps for ServerJob.
@@ -101,12 +102,14 @@ var (
 		1: "DEPRO",
 		2: "PM",
 		3: "SW",
+		4: "IMPORT",
 	}
 	ServerJob_value = map[string]int32{
 		"INSTALL": 0,
 		"DEPRO":   1,
 		"PM":      2,
 		"SW":      3,
+		"IMPORT":  4,
 	}
 )
 
@@ -1236,69 +1239,6 @@ func (x *AdminGetServerVNCTokenResponse) GetPassword() string {
 	return ""
 }
 
-type VNCConnection struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ip       string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-	Port     int32  `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
-	Password string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-}
-
-func (x *VNCConnection) Reset() {
-	*x = VNCConnection{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[14]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *VNCConnection) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VNCConnection) ProtoMessage() {}
-
-func (x *VNCConnection) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[14]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VNCConnection.ProtoReflect.Descriptor instead.
-func (*VNCConnection) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *VNCConnection) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
-func (x *VNCConnection) GetPort() int32 {
-	if x != nil {
-		return x.Port
-	}
-	return 0
-}
-
-func (x *VNCConnection) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
 type GetVNCRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1310,7 +1250,7 @@ type GetVNCRequest struct {
 func (x *GetVNCRequest) Reset() {
 	*x = GetVNCRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[15]
+		mi := &file_server_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1323,7 +1263,7 @@ func (x *GetVNCRequest) String() string {
 func (*GetVNCRequest) ProtoMessage() {}
 
 func (x *GetVNCRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[15]
+	mi := &file_server_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1336,7 +1276,7 @@ func (x *GetVNCRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVNCRequest.ProtoReflect.Descriptor instead.
 func (*GetVNCRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{15}
+	return file_server_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetVNCRequest) GetToken() string {
@@ -1351,14 +1291,13 @@ type GetVNCResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Websocket string         `protobuf:"bytes,1,opt,name=websocket,proto3" json:"websocket,omitempty"`
-	Vnc       *VNCConnection `protobuf:"bytes,2,opt,name=vnc,proto3" json:"vnc,omitempty"`
+	Websocket string `protobuf:"bytes,1,opt,name=websocket,proto3" json:"websocket,omitempty"`
 }
 
 func (x *GetVNCResponse) Reset() {
 	*x = GetVNCResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[16]
+		mi := &file_server_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1371,7 +1310,7 @@ func (x *GetVNCResponse) String() string {
 func (*GetVNCResponse) ProtoMessage() {}
 
 func (x *GetVNCResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[16]
+	mi := &file_server_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1384,7 +1323,7 @@ func (x *GetVNCResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVNCResponse.ProtoReflect.Descriptor instead.
 func (*GetVNCResponse) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{16}
+	return file_server_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetVNCResponse) GetWebsocket() string {
@@ -1392,13 +1331,6 @@ func (x *GetVNCResponse) GetWebsocket() string {
 		return x.Websocket
 	}
 	return ""
-}
-
-func (x *GetVNCResponse) GetVnc() *VNCConnection {
-	if x != nil {
-		return x.Vnc
-	}
-	return nil
 }
 
 type CreatePxeLinuxConfigRequest struct {
@@ -1412,7 +1344,7 @@ type CreatePxeLinuxConfigRequest struct {
 func (x *CreatePxeLinuxConfigRequest) Reset() {
 	*x = CreatePxeLinuxConfigRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[17]
+		mi := &file_server_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1425,7 +1357,7 @@ func (x *CreatePxeLinuxConfigRequest) String() string {
 func (*CreatePxeLinuxConfigRequest) ProtoMessage() {}
 
 func (x *CreatePxeLinuxConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[17]
+	mi := &file_server_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1438,106 +1370,12 @@ func (x *CreatePxeLinuxConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreatePxeLinuxConfigRequest.ProtoReflect.Descriptor instead.
 func (*CreatePxeLinuxConfigRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{17}
+	return file_server_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreatePxeLinuxConfigRequest) GetToken() string {
 	if x != nil {
 		return x.Token
-	}
-	return ""
-}
-
-type GetAutoRunScriptRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ip string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-}
-
-func (x *GetAutoRunScriptRequest) Reset() {
-	*x = GetAutoRunScriptRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[18]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetAutoRunScriptRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAutoRunScriptRequest) ProtoMessage() {}
-
-func (x *GetAutoRunScriptRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[18]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAutoRunScriptRequest.ProtoReflect.Descriptor instead.
-func (*GetAutoRunScriptRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *GetAutoRunScriptRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
-type GetAutoRunScriptResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Script string `protobuf:"bytes,1,opt,name=script,proto3" json:"script,omitempty"`
-}
-
-func (x *GetAutoRunScriptResponse) Reset() {
-	*x = GetAutoRunScriptResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[19]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetAutoRunScriptResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetAutoRunScriptResponse) ProtoMessage() {}
-
-func (x *GetAutoRunScriptResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[19]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetAutoRunScriptResponse.ProtoReflect.Descriptor instead.
-func (*GetAutoRunScriptResponse) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *GetAutoRunScriptResponse) GetScript() string {
-	if x != nil {
-		return x.Script
 	}
 	return ""
 }
@@ -1554,7 +1392,7 @@ type AdminChangeServerPowerStatusRequest struct {
 func (x *AdminChangeServerPowerStatusRequest) Reset() {
 	*x = AdminChangeServerPowerStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[20]
+		mi := &file_server_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1567,7 +1405,7 @@ func (x *AdminChangeServerPowerStatusRequest) String() string {
 func (*AdminChangeServerPowerStatusRequest) ProtoMessage() {}
 
 func (x *AdminChangeServerPowerStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[20]
+	mi := &file_server_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1580,7 +1418,7 @@ func (x *AdminChangeServerPowerStatusRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AdminChangeServerPowerStatusRequest.ProtoReflect.Descriptor instead.
 func (*AdminChangeServerPowerStatusRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{20}
+	return file_server_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *AdminChangeServerPowerStatusRequest) GetId() string {
@@ -1608,7 +1446,7 @@ type AdminGetServerPlatformManagementRequest struct {
 func (x *AdminGetServerPlatformManagementRequest) Reset() {
 	*x = AdminGetServerPlatformManagementRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[21]
+		mi := &file_server_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1621,7 +1459,7 @@ func (x *AdminGetServerPlatformManagementRequest) String() string {
 func (*AdminGetServerPlatformManagementRequest) ProtoMessage() {}
 
 func (x *AdminGetServerPlatformManagementRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[21]
+	mi := &file_server_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1634,7 +1472,7 @@ func (x *AdminGetServerPlatformManagementRequest) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use AdminGetServerPlatformManagementRequest.ProtoReflect.Descriptor instead.
 func (*AdminGetServerPlatformManagementRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{21}
+	return file_server_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *AdminGetServerPlatformManagementRequest) GetId() string {
@@ -1656,7 +1494,7 @@ type AdminCreateServerJobRequest struct {
 func (x *AdminCreateServerJobRequest) Reset() {
 	*x = AdminCreateServerJobRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[22]
+		mi := &file_server_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1669,7 +1507,7 @@ func (x *AdminCreateServerJobRequest) String() string {
 func (*AdminCreateServerJobRequest) ProtoMessage() {}
 
 func (x *AdminCreateServerJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[22]
+	mi := &file_server_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1682,7 +1520,7 @@ func (x *AdminCreateServerJobRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminCreateServerJobRequest.ProtoReflect.Descriptor instead.
 func (*AdminCreateServerJobRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{22}
+	return file_server_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *AdminCreateServerJobRequest) GetId() string {
@@ -1699,249 +1537,6 @@ func (x *AdminCreateServerJobRequest) GetJob() ServerJob {
 	return ServerJob_INSTALL
 }
 
-type PostProvisioningCallbackRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ip string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-}
-
-func (x *PostProvisioningCallbackRequest) Reset() {
-	*x = PostProvisioningCallbackRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[23]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostProvisioningCallbackRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostProvisioningCallbackRequest) ProtoMessage() {}
-
-func (x *PostProvisioningCallbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[23]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostProvisioningCallbackRequest.ProtoReflect.Descriptor instead.
-func (*PostProvisioningCallbackRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *PostProvisioningCallbackRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
-type PostProvisioningCallbackResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	SwitchConfiguration *ConfigureSwitchPortRequest `protobuf:"bytes,1,opt,name=switch_configuration,json=switchConfiguration,proto3" json:"switch_configuration,omitempty"`
-	PlatformManagement  *PlatformManagement         `protobuf:"bytes,2,opt,name=platform_management,json=platformManagement,proto3" json:"platform_management,omitempty"`
-}
-
-func (x *PostProvisioningCallbackResponse) Reset() {
-	*x = PostProvisioningCallbackResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[24]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostProvisioningCallbackResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostProvisioningCallbackResponse) ProtoMessage() {}
-
-func (x *PostProvisioningCallbackResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[24]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostProvisioningCallbackResponse.ProtoReflect.Descriptor instead.
-func (*PostProvisioningCallbackResponse) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{24}
-}
-
-func (x *PostProvisioningCallbackResponse) GetSwitchConfiguration() *ConfigureSwitchPortRequest {
-	if x != nil {
-		return x.SwitchConfiguration
-	}
-	return nil
-}
-
-func (x *PostProvisioningCallbackResponse) GetPlatformManagement() *PlatformManagement {
-	if x != nil {
-		return x.PlatformManagement
-	}
-	return nil
-}
-
-type FinishProvisioningCallbackRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ip string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-}
-
-func (x *FinishProvisioningCallbackRequest) Reset() {
-	*x = FinishProvisioningCallbackRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[25]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FinishProvisioningCallbackRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FinishProvisioningCallbackRequest) ProtoMessage() {}
-
-func (x *FinishProvisioningCallbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[25]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FinishProvisioningCallbackRequest.ProtoReflect.Descriptor instead.
-func (*FinishProvisioningCallbackRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *FinishProvisioningCallbackRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
-type ListPlatformManagementsResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	PlatformManagements []*PlatformManagement `protobuf:"bytes,1,rep,name=platform_managements,json=platformManagements,proto3" json:"platform_managements,omitempty"`
-}
-
-func (x *ListPlatformManagementsResponse) Reset() {
-	*x = ListPlatformManagementsResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[26]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ListPlatformManagementsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListPlatformManagementsResponse) ProtoMessage() {}
-
-func (x *ListPlatformManagementsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[26]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListPlatformManagementsResponse.ProtoReflect.Descriptor instead.
-func (*ListPlatformManagementsResponse) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *ListPlatformManagementsResponse) GetPlatformManagements() []*PlatformManagement {
-	if x != nil {
-		return x.PlatformManagements
-	}
-	return nil
-}
-
-type PostDeprovisioningCallbackRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Ip string `protobuf:"bytes,1,opt,name=ip,proto3" json:"ip,omitempty"`
-}
-
-func (x *PostDeprovisioningCallbackRequest) Reset() {
-	*x = PostDeprovisioningCallbackRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[27]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostDeprovisioningCallbackRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostDeprovisioningCallbackRequest) ProtoMessage() {}
-
-func (x *PostDeprovisioningCallbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[27]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostDeprovisioningCallbackRequest.ProtoReflect.Descriptor instead.
-func (*PostDeprovisioningCallbackRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *PostDeprovisioningCallbackRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
-	}
-	return ""
-}
-
 type ServerMonitoring struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1955,7 +1550,7 @@ type ServerMonitoring struct {
 func (x *ServerMonitoring) Reset() {
 	*x = ServerMonitoring{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[28]
+		mi := &file_server_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1968,7 +1563,7 @@ func (x *ServerMonitoring) String() string {
 func (*ServerMonitoring) ProtoMessage() {}
 
 func (x *ServerMonitoring) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[28]
+	mi := &file_server_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1981,7 +1576,7 @@ func (x *ServerMonitoring) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ServerMonitoring.ProtoReflect.Descriptor instead.
 func (*ServerMonitoring) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{28}
+	return file_server_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ServerMonitoring) GetId() string {
@@ -2016,7 +1611,7 @@ type ListMonitoringTargetsResponse struct {
 func (x *ListMonitoringTargetsResponse) Reset() {
 	*x = ListMonitoringTargetsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[29]
+		mi := &file_server_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2029,7 +1624,7 @@ func (x *ListMonitoringTargetsResponse) String() string {
 func (*ListMonitoringTargetsResponse) ProtoMessage() {}
 
 func (x *ListMonitoringTargetsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[29]
+	mi := &file_server_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2042,7 +1637,7 @@ func (x *ListMonitoringTargetsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMonitoringTargetsResponse.ProtoReflect.Descriptor instead.
 func (*ListMonitoringTargetsResponse) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{29}
+	return file_server_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ListMonitoringTargetsResponse) GetMonitoring() []*ServerMonitoring {
@@ -2064,7 +1659,7 @@ type MonitoringStatus struct {
 func (x *MonitoringStatus) Reset() {
 	*x = MonitoringStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[30]
+		mi := &file_server_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2077,7 +1672,7 @@ func (x *MonitoringStatus) String() string {
 func (*MonitoringStatus) ProtoMessage() {}
 
 func (x *MonitoringStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[30]
+	mi := &file_server_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2090,7 +1685,7 @@ func (x *MonitoringStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MonitoringStatus.ProtoReflect.Descriptor instead.
 func (*MonitoringStatus) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{30}
+	return file_server_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *MonitoringStatus) GetIp() string {
@@ -2118,7 +1713,7 @@ type UpdateMonitoringStatusRequest struct {
 func (x *UpdateMonitoringStatusRequest) Reset() {
 	*x = UpdateMonitoringStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[31]
+		mi := &file_server_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2131,7 +1726,7 @@ func (x *UpdateMonitoringStatusRequest) String() string {
 func (*UpdateMonitoringStatusRequest) ProtoMessage() {}
 
 func (x *UpdateMonitoringStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[31]
+	mi := &file_server_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2144,12 +1739,310 @@ func (x *UpdateMonitoringStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateMonitoringStatusRequest.ProtoReflect.Descriptor instead.
 func (*UpdateMonitoringStatusRequest) Descriptor() ([]byte, []int) {
-	return file_server_proto_rawDescGZIP(), []int{31}
+	return file_server_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *UpdateMonitoringStatusRequest) GetStatus() []*MonitoringStatus {
 	if x != nil {
 		return x.Status
+	}
+	return nil
+}
+
+type ProvisioningCallbackRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *ProvisioningCallbackRequest) Reset() {
+	*x = ProvisioningCallbackRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ProvisioningCallbackRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProvisioningCallbackRequest) ProtoMessage() {}
+
+func (x *ProvisioningCallbackRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProvisioningCallbackRequest.ProtoReflect.Descriptor instead.
+func (*ProvisioningCallbackRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ProvisioningCallbackRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type PostProvisioningCallbackRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpAddress string `protobuf:"bytes,1,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
+}
+
+func (x *PostProvisioningCallbackRequest) Reset() {
+	*x = PostProvisioningCallbackRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PostProvisioningCallbackRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostProvisioningCallbackRequest) ProtoMessage() {}
+
+func (x *PostProvisioningCallbackRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostProvisioningCallbackRequest.ProtoReflect.Descriptor instead.
+func (*PostProvisioningCallbackRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *PostProvisioningCallbackRequest) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+type DeprovisioningCallbackRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *DeprovisioningCallbackRequest) Reset() {
+	*x = DeprovisioningCallbackRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeprovisioningCallbackRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeprovisioningCallbackRequest) ProtoMessage() {}
+
+func (x *DeprovisioningCallbackRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeprovisioningCallbackRequest.ProtoReflect.Descriptor instead.
+func (*DeprovisioningCallbackRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *DeprovisioningCallbackRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ListVncEndpointsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Datacenter string `protobuf:"bytes,1,opt,name=datacenter,proto3" json:"datacenter,omitempty"`
+}
+
+func (x *ListVncEndpointsRequest) Reset() {
+	*x = ListVncEndpointsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListVncEndpointsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListVncEndpointsRequest) ProtoMessage() {}
+
+func (x *ListVncEndpointsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListVncEndpointsRequest.ProtoReflect.Descriptor instead.
+func (*ListVncEndpointsRequest) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ListVncEndpointsRequest) GetDatacenter() string {
+	if x != nil {
+		return x.Datacenter
+	}
+	return ""
+}
+
+type VncEndpoint struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	IpAddress string `protobuf:"bytes,1,opt,name=ip_address,json=ipAddress,proto3" json:"ip_address,omitempty"`
+	Port      int32  `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
+	Password  string `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+}
+
+func (x *VncEndpoint) Reset() {
+	*x = VncEndpoint{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *VncEndpoint) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VncEndpoint) ProtoMessage() {}
+
+func (x *VncEndpoint) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VncEndpoint.ProtoReflect.Descriptor instead.
+func (*VncEndpoint) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *VncEndpoint) GetIpAddress() string {
+	if x != nil {
+		return x.IpAddress
+	}
+	return ""
+}
+
+func (x *VncEndpoint) GetPort() int32 {
+	if x != nil {
+		return x.Port
+	}
+	return 0
+}
+
+func (x *VncEndpoint) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type ListVncEndpointsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Endpoints []*VncEndpoint `protobuf:"bytes,1,rep,name=endpoints,proto3" json:"endpoints,omitempty"`
+}
+
+func (x *ListVncEndpointsResponse) Reset() {
+	*x = ListVncEndpointsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_server_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListVncEndpointsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListVncEndpointsResponse) ProtoMessage() {}
+
+func (x *ListVncEndpointsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_server_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListVncEndpointsResponse.ProtoReflect.Descriptor instead.
+func (*ListVncEndpointsResponse) Descriptor() ([]byte, []int) {
+	return file_server_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ListVncEndpointsResponse) GetEndpoints() []*VncEndpoint {
+	if x != nil {
+		return x.Endpoints
 	}
 	return nil
 }
@@ -2170,7 +2063,7 @@ type AdminListAvailableServerResponse_AvailableServer struct {
 func (x *AdminListAvailableServerResponse_AvailableServer) Reset() {
 	*x = AdminListAvailableServerResponse_AvailableServer{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_server_proto_msgTypes[32]
+		mi := &file_server_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2183,7 +2076,7 @@ func (x *AdminListAvailableServerResponse_AvailableServer) String() string {
 func (*AdminListAvailableServerResponse_AvailableServer) ProtoMessage() {}
 
 func (x *AdminListAvailableServerResponse_AvailableServer) ProtoReflect() protoreflect.Message {
-	mi := &file_server_proto_msgTypes[32]
+	mi := &file_server_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2416,126 +2309,107 @@ var file_server_proto_rawDesc = []byte{
 	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x12, 0x1a, 0x0a, 0x08,
 	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
-	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x4f, 0x0a, 0x0d, 0x56, 0x4e, 0x43, 0x43,
-	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x6f, 0x72,
-	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x1a, 0x0a,
-	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x25, 0x0a, 0x0d, 0x47, 0x65, 0x74,
-	0x56, 0x4e, 0x43, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f,
-	0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e,
-	0x22, 0x5b, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x56, 0x4e, 0x43, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x77, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x77, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74,
-	0x12, 0x2b, 0x0a, 0x03, 0x76, 0x6e, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x56, 0x4e, 0x43, 0x43, 0x6f,
-	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x03, 0x76, 0x6e, 0x63, 0x22, 0x33, 0x0a,
-	0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x78, 0x65, 0x4c, 0x69, 0x6e, 0x75, 0x78, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05,
-	0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b,
-	0x65, 0x6e, 0x22, 0x29, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e,
-	0x53, 0x63, 0x72, 0x69, 0x70, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0x32, 0x0a,
-	0x18, 0x47, 0x65, 0x74, 0x41, 0x75, 0x74, 0x6f, 0x52, 0x75, 0x6e, 0x53, 0x63, 0x72, 0x69, 0x70,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x63, 0x72,
-	0x69, 0x70, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x63, 0x72, 0x69, 0x70,
-	0x74, 0x22, 0x6c, 0x0a, 0x23, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x35, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x6f, 0x77, 0x65,
-	0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22,
-	0x39, 0x0a, 0x27, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x47, 0x65, 0x74, 0x53, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d,
-	0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x56, 0x0a, 0x1b, 0x41, 0x64,
-	0x6d, 0x69, 0x6e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4a,
-	0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x27, 0x0a, 0x03, 0x6a, 0x6f, 0x62,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4a, 0x6f, 0x62, 0x52, 0x03, 0x6a,
-	0x6f, 0x62, 0x22, 0x31, 0x0a, 0x1f, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73,
-	0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0xcf, 0x01, 0x0a, 0x20, 0x50, 0x6f, 0x73, 0x74, 0x50, 0x72,
-	0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61,
-	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x14, 0x73, 0x77,
-	0x69, 0x74, 0x63, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x6e,
-	0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x65,
-	0x53, 0x77, 0x69, 0x74, 0x63, 0x68, 0x50, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x52, 0x13, 0x73, 0x77, 0x69, 0x74, 0x63, 0x68, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75,
-	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x4f, 0x0a, 0x13, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f,
-	0x72, 0x6d, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x2e, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d,
-	0x65, 0x6e, 0x74, 0x52, 0x12, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e,
-	0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x22, 0x33, 0x0a, 0x21, 0x46, 0x69, 0x6e, 0x69, 0x73,
-	0x68, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c,
-	0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
-	0x69, 0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0x74, 0x0a, 0x1f,
-	0x4c, 0x69, 0x73, 0x74, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x51, 0x0a, 0x14, 0x70, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x5f, 0x6d, 0x61, 0x6e, 0x61,
-	0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1e, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x50, 0x6c, 0x61, 0x74, 0x66,
-	0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x13, 0x70,
-	0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e,
-	0x74, 0x73, 0x22, 0x33, 0x0a, 0x21, 0x50, 0x6f, 0x73, 0x74, 0x44, 0x65, 0x70, 0x72, 0x6f, 0x76,
+	0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x22, 0x25, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x56,
+	0x4e, 0x43, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x6b,
+	0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x22,
+	0x2e, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x56, 0x4e, 0x43, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x1c, 0x0a, 0x09, 0x77, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x77, 0x65, 0x62, 0x73, 0x6f, 0x63, 0x6b, 0x65, 0x74, 0x22,
+	0x33, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x50, 0x78, 0x65, 0x4c, 0x69, 0x6e, 0x75,
+	0x78, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14,
+	0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74,
+	0x6f, 0x6b, 0x65, 0x6e, 0x22, 0x6c, 0x0a, 0x23, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x43, 0x68, 0x61,
+	0x6e, 0x67, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x35, 0x0a, 0x06, 0x73,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50,
+	0x6f, 0x77, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x22, 0x39, 0x0a, 0x27, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x47, 0x65, 0x74, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
+	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x56, 0x0a,
+	0x1b, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x4a, 0x6f, 0x62, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x27, 0x0a, 0x03,
+	0x6a, 0x6f, 0x62, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x15, 0x2e, 0x61, 0x70, 0x69, 0x2e,
+	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4a, 0x6f, 0x62,
+	0x52, 0x03, 0x6a, 0x6f, 0x62, 0x22, 0x5f, 0x0a, 0x10, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d,
+	0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x2b, 0x0a, 0x03, 0x74, 0x61, 0x67,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x2e, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61,
+	0x67, 0x52, 0x03, 0x74, 0x61, 0x67, 0x22, 0x5d, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74, 0x4d, 0x6f,
+	0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x73, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x0a, 0x6d, 0x6f, 0x6e, 0x69, 0x74,
+	0x6f, 0x72, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x61, 0x70,
+	0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4d,
+	0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0a, 0x6d, 0x6f, 0x6e, 0x69, 0x74,
+	0x6f, 0x72, 0x69, 0x6e, 0x67, 0x22, 0x3a, 0x0a, 0x10, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72,
+	0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x16, 0x0a, 0x06, 0x6f, 0x6e, 0x6c,
+	0x69, 0x6e, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x6f, 0x6e, 0x6c, 0x69, 0x6e,
+	0x65, 0x22, 0x55, 0x0a, 0x1d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x6e, 0x69, 0x74,
+	0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x34, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
+	0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x2d, 0x0a, 0x1b, 0x50, 0x72, 0x6f, 0x76,
 	0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x70, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x22, 0x5f, 0x0a, 0x10, 0x53, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x70, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x2b, 0x0a, 0x03, 0x74,
-	0x61, 0x67, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x19, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67,
-	0x54, 0x61, 0x67, 0x52, 0x03, 0x74, 0x61, 0x67, 0x22, 0x5d, 0x0a, 0x1d, 0x4c, 0x69, 0x73, 0x74,
-	0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x72, 0x67, 0x65, 0x74,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x0a, 0x6d, 0x6f, 0x6e,
-	0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0a, 0x6d, 0x6f, 0x6e,
-	0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x22, 0x3a, 0x0a, 0x10, 0x4d, 0x6f, 0x6e, 0x69, 0x74,
-	0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69,
-	0x70, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x70, 0x12, 0x16, 0x0a, 0x06, 0x6f,
-	0x6e, 0x6c, 0x69, 0x6e, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x6f, 0x6e, 0x6c,
-	0x69, 0x6e, 0x65, 0x22, 0x55, 0x0a, 0x1d, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x4d, 0x6f, 0x6e,
-	0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x34, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65,
-	0x72, 0x2e, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x2a, 0xa7, 0x01, 0x0a, 0x0c, 0x53,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1d, 0x0a, 0x19, 0x53,
-	0x45, 0x54, 0x55, 0x50, 0x5f, 0x50, 0x4c, 0x41, 0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f, 0x4d, 0x41,
-	0x4e, 0x41, 0x47, 0x45, 0x4d, 0x45, 0x4e, 0x54, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x41, 0x56,
-	0x41, 0x49, 0x4c, 0x41, 0x42, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x50, 0x52, 0x4f,
-	0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x15, 0x0a, 0x11, 0x50,
-	0x4f, 0x53, 0x54, 0x5f, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x49, 0x4e, 0x47,
-	0x10, 0x03, 0x12, 0x0f, 0x0a, 0x0b, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x45,
-	0x44, 0x10, 0x04, 0x12, 0x12, 0x0a, 0x0e, 0x44, 0x45, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49,
-	0x4f, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x05, 0x12, 0x0c, 0x0a, 0x08, 0x44, 0x45, 0x4c, 0x45, 0x54,
-	0x49, 0x4e, 0x47, 0x10, 0x06, 0x12, 0x0d, 0x0a, 0x09, 0x49, 0x4d, 0x50, 0x4f, 0x52, 0x54, 0x49,
-	0x4e, 0x47, 0x10, 0x07, 0x2a, 0x33, 0x0a, 0x09, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4a, 0x6f,
-	0x62, 0x12, 0x0b, 0x0a, 0x07, 0x49, 0x4e, 0x53, 0x54, 0x41, 0x4c, 0x4c, 0x10, 0x00, 0x12, 0x09,
-	0x0a, 0x05, 0x44, 0x45, 0x50, 0x52, 0x4f, 0x10, 0x01, 0x12, 0x06, 0x0a, 0x02, 0x50, 0x4d, 0x10,
-	0x02, 0x12, 0x06, 0x0a, 0x02, 0x53, 0x57, 0x10, 0x03, 0x2a, 0x2d, 0x0a, 0x16, 0x50, 0x6c, 0x61,
-	0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x54,
-	0x79, 0x70, 0x65, 0x12, 0x09, 0x0a, 0x05, 0x49, 0x44, 0x52, 0x41, 0x43, 0x10, 0x00, 0x12, 0x08,
-	0x0a, 0x04, 0x49, 0x4c, 0x4f, 0x35, 0x10, 0x01, 0x2a, 0x58, 0x0a, 0x11, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0b, 0x0a,
-	0x07, 0x53, 0x48, 0x55, 0x54, 0x5f, 0x4f, 0x4e, 0x10, 0x00, 0x12, 0x0c, 0x0a, 0x08, 0x53, 0x48,
-	0x55, 0x54, 0x5f, 0x4f, 0x46, 0x46, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x52, 0x45, 0x53, 0x45,
-	0x54, 0x10, 0x02, 0x12, 0x1d, 0x0a, 0x19, 0x52, 0x45, 0x53, 0x45, 0x54, 0x5f, 0x50, 0x4c, 0x41,
-	0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f, 0x4d, 0x41, 0x4e, 0x41, 0x47, 0x45, 0x4d, 0x45, 0x4e, 0x54,
-	0x10, 0x03, 0x2a, 0x42, 0x0a, 0x0d, 0x4d, 0x6f, 0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67,
-	0x54, 0x61, 0x67, 0x12, 0x1f, 0x0a, 0x1b, 0x4d, 0x4f, 0x4e, 0x49, 0x54, 0x4f, 0x52, 0x5f, 0x50,
-	0x4c, 0x41, 0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f, 0x4d, 0x41, 0x4e, 0x41, 0x47, 0x45, 0x4d, 0x45,
-	0x4e, 0x54, 0x10, 0x00, 0x12, 0x10, 0x0a, 0x0c, 0x4d, 0x4f, 0x4e, 0x49, 0x54, 0x4f, 0x52, 0x5f,
-	0x48, 0x4f, 0x53, 0x54, 0x10, 0x01, 0x42, 0x16, 0x5a, 0x14, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64,
-	0x2f, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x3b, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x40, 0x0a, 0x1f, 0x50, 0x6f, 0x73, 0x74, 0x50,
+	0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62,
+	0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70,
+	0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x69, 0x70, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x2f, 0x0a, 0x1d, 0x44, 0x65, 0x70,
+	0x72, 0x6f, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x69, 0x6e, 0x67, 0x43, 0x61, 0x6c, 0x6c, 0x62,
+	0x61, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x39, 0x0a, 0x17, 0x4c, 0x69,
+	0x73, 0x74, 0x56, 0x6e, 0x63, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1e, 0x0a, 0x0a, 0x64, 0x61, 0x74, 0x61, 0x63, 0x65, 0x6e,
+	0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x64, 0x61, 0x74, 0x61, 0x63,
+	0x65, 0x6e, 0x74, 0x65, 0x72, 0x22, 0x5c, 0x0a, 0x0b, 0x56, 0x6e, 0x63, 0x45, 0x6e, 0x64, 0x70,
+	0x6f, 0x69, 0x6e, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x70, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x69, 0x70, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x04, 0x70, 0x6f, 0x72, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77,
+	0x6f, 0x72, 0x64, 0x22, 0x51, 0x0a, 0x18, 0x4c, 0x69, 0x73, 0x74, 0x56, 0x6e, 0x63, 0x45, 0x6e,
+	0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x35, 0x0a, 0x09, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x17, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
+	0x56, 0x6e, 0x63, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x52, 0x09, 0x65, 0x6e, 0x64,
+	0x70, 0x6f, 0x69, 0x6e, 0x74, 0x73, 0x2a, 0xa7, 0x01, 0x0a, 0x0c, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1d, 0x0a, 0x19, 0x53, 0x45, 0x54, 0x55, 0x50,
+	0x5f, 0x50, 0x4c, 0x41, 0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f, 0x4d, 0x41, 0x4e, 0x41, 0x47, 0x45,
+	0x4d, 0x45, 0x4e, 0x54, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x41, 0x56, 0x41, 0x49, 0x4c, 0x41,
+	0x42, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49,
+	0x4f, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x12, 0x15, 0x0a, 0x11, 0x50, 0x4f, 0x53, 0x54, 0x5f,
+	0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x03, 0x12, 0x0f,
+	0x0a, 0x0b, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x45, 0x44, 0x10, 0x04, 0x12,
+	0x12, 0x0a, 0x0e, 0x44, 0x45, 0x50, 0x52, 0x4f, 0x56, 0x49, 0x53, 0x49, 0x4f, 0x4e, 0x49, 0x4e,
+	0x47, 0x10, 0x05, 0x12, 0x0c, 0x0a, 0x08, 0x44, 0x45, 0x4c, 0x45, 0x54, 0x49, 0x4e, 0x47, 0x10,
+	0x06, 0x12, 0x0d, 0x0a, 0x09, 0x49, 0x4d, 0x50, 0x4f, 0x52, 0x54, 0x49, 0x4e, 0x47, 0x10, 0x07,
+	0x2a, 0x3f, 0x0a, 0x09, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4a, 0x6f, 0x62, 0x12, 0x0b, 0x0a,
+	0x07, 0x49, 0x4e, 0x53, 0x54, 0x41, 0x4c, 0x4c, 0x10, 0x00, 0x12, 0x09, 0x0a, 0x05, 0x44, 0x45,
+	0x50, 0x52, 0x4f, 0x10, 0x01, 0x12, 0x06, 0x0a, 0x02, 0x50, 0x4d, 0x10, 0x02, 0x12, 0x06, 0x0a,
+	0x02, 0x53, 0x57, 0x10, 0x03, 0x12, 0x0a, 0x0a, 0x06, 0x49, 0x4d, 0x50, 0x4f, 0x52, 0x54, 0x10,
+	0x04, 0x2a, 0x2d, 0x0a, 0x16, 0x50, 0x6c, 0x61, 0x74, 0x66, 0x6f, 0x72, 0x6d, 0x4d, 0x61, 0x6e,
+	0x61, 0x67, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x09, 0x0a, 0x05, 0x49,
+	0x44, 0x52, 0x41, 0x43, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x49, 0x4c, 0x4f, 0x35, 0x10, 0x01,
+	0x2a, 0x58, 0x0a, 0x11, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x6f, 0x77, 0x65, 0x72, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x48, 0x55, 0x54, 0x5f, 0x4f, 0x4e,
+	0x10, 0x00, 0x12, 0x0c, 0x0a, 0x08, 0x53, 0x48, 0x55, 0x54, 0x5f, 0x4f, 0x46, 0x46, 0x10, 0x01,
+	0x12, 0x09, 0x0a, 0x05, 0x52, 0x45, 0x53, 0x45, 0x54, 0x10, 0x02, 0x12, 0x1d, 0x0a, 0x19, 0x52,
+	0x45, 0x53, 0x45, 0x54, 0x5f, 0x50, 0x4c, 0x41, 0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f, 0x4d, 0x41,
+	0x4e, 0x41, 0x47, 0x45, 0x4d, 0x45, 0x4e, 0x54, 0x10, 0x03, 0x2a, 0x42, 0x0a, 0x0d, 0x4d, 0x6f,
+	0x6e, 0x69, 0x74, 0x6f, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x61, 0x67, 0x12, 0x1f, 0x0a, 0x1b, 0x4d,
+	0x4f, 0x4e, 0x49, 0x54, 0x4f, 0x52, 0x5f, 0x50, 0x4c, 0x41, 0x54, 0x46, 0x4f, 0x52, 0x4d, 0x5f,
+	0x4d, 0x41, 0x4e, 0x41, 0x47, 0x45, 0x4d, 0x45, 0x4e, 0x54, 0x10, 0x00, 0x12, 0x10, 0x0a, 0x0c,
+	0x4d, 0x4f, 0x4e, 0x49, 0x54, 0x4f, 0x52, 0x5f, 0x48, 0x4f, 0x53, 0x54, 0x10, 0x01, 0x42, 0x16,
+	0x5a, 0x14, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x2f, 0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x3b,
+	0x70, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2551,7 +2425,7 @@ func file_server_proto_rawDescGZIP() []byte {
 }
 
 var file_server_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_server_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
 var file_server_proto_goTypes = []interface{}{
 	(ServerStatus)(0),                                        // 0: api.server.ServerStatus
 	(ServerJob)(0),                                           // 1: api.server.ServerJob
@@ -2572,69 +2446,63 @@ var file_server_proto_goTypes = []interface{}{
 	(*ConfigurePlatformManagementRequest)(nil),               // 16: api.server.ConfigurePlatformManagementRequest
 	(*AdminGetServerVNCTokenRequest)(nil),                    // 17: api.server.AdminGetServerVNCTokenRequest
 	(*AdminGetServerVNCTokenResponse)(nil),                   // 18: api.server.AdminGetServerVNCTokenResponse
-	(*VNCConnection)(nil),                                    // 19: api.server.VNCConnection
-	(*GetVNCRequest)(nil),                                    // 20: api.server.GetVNCRequest
-	(*GetVNCResponse)(nil),                                   // 21: api.server.GetVNCResponse
-	(*CreatePxeLinuxConfigRequest)(nil),                      // 22: api.server.CreatePxeLinuxConfigRequest
-	(*GetAutoRunScriptRequest)(nil),                          // 23: api.server.GetAutoRunScriptRequest
-	(*GetAutoRunScriptResponse)(nil),                         // 24: api.server.GetAutoRunScriptResponse
-	(*AdminChangeServerPowerStatusRequest)(nil),              // 25: api.server.AdminChangeServerPowerStatusRequest
-	(*AdminGetServerPlatformManagementRequest)(nil),          // 26: api.server.AdminGetServerPlatformManagementRequest
-	(*AdminCreateServerJobRequest)(nil),                      // 27: api.server.AdminCreateServerJobRequest
-	(*PostProvisioningCallbackRequest)(nil),                  // 28: api.server.PostProvisioningCallbackRequest
-	(*PostProvisioningCallbackResponse)(nil),                 // 29: api.server.PostProvisioningCallbackResponse
-	(*FinishProvisioningCallbackRequest)(nil),                // 30: api.server.FinishProvisioningCallbackRequest
-	(*ListPlatformManagementsResponse)(nil),                  // 31: api.server.ListPlatformManagementsResponse
-	(*PostDeprovisioningCallbackRequest)(nil),                // 32: api.server.PostDeprovisioningCallbackRequest
-	(*ServerMonitoring)(nil),                                 // 33: api.server.ServerMonitoring
-	(*ListMonitoringTargetsResponse)(nil),                    // 34: api.server.ListMonitoringTargetsResponse
-	(*MonitoringStatus)(nil),                                 // 35: api.server.MonitoringStatus
-	(*UpdateMonitoringStatusRequest)(nil),                    // 36: api.server.UpdateMonitoringStatusRequest
-	(*AdminListAvailableServerResponse_AvailableServer)(nil), // 37: api.server.AdminListAvailableServerResponse.AvailableServer
-	(*DataCenter)(nil),                                       // 38: api.region.DataCenter
-	(*Flavour)(nil),                                          // 39: api.flavour.Flavour
-	(*timestamppb.Timestamp)(nil),                            // 40: google.protobuf.Timestamp
-	(*ServerInterface)(nil),                                  // 41: api.network.ServerInterface
-	(*Cidr)(nil),                                             // 42: api.network.Cidr
-	(*Switch)(nil),                                           // 43: api.network.Switch
-	(*ConfigureSwitchPortRequest)(nil),                       // 44: api.network.ConfigureSwitchPortRequest
+	(*GetVNCRequest)(nil),                                    // 19: api.server.GetVNCRequest
+	(*GetVNCResponse)(nil),                                   // 20: api.server.GetVNCResponse
+	(*CreatePxeLinuxConfigRequest)(nil),                      // 21: api.server.CreatePxeLinuxConfigRequest
+	(*AdminChangeServerPowerStatusRequest)(nil),              // 22: api.server.AdminChangeServerPowerStatusRequest
+	(*AdminGetServerPlatformManagementRequest)(nil),          // 23: api.server.AdminGetServerPlatformManagementRequest
+	(*AdminCreateServerJobRequest)(nil),                      // 24: api.server.AdminCreateServerJobRequest
+	(*ServerMonitoring)(nil),                                 // 25: api.server.ServerMonitoring
+	(*ListMonitoringTargetsResponse)(nil),                    // 26: api.server.ListMonitoringTargetsResponse
+	(*MonitoringStatus)(nil),                                 // 27: api.server.MonitoringStatus
+	(*UpdateMonitoringStatusRequest)(nil),                    // 28: api.server.UpdateMonitoringStatusRequest
+	(*ProvisioningCallbackRequest)(nil),                      // 29: api.server.ProvisioningCallbackRequest
+	(*PostProvisioningCallbackRequest)(nil),                  // 30: api.server.PostProvisioningCallbackRequest
+	(*DeprovisioningCallbackRequest)(nil),                    // 31: api.server.DeprovisioningCallbackRequest
+	(*ListVncEndpointsRequest)(nil),                          // 32: api.server.ListVncEndpointsRequest
+	(*VncEndpoint)(nil),                                      // 33: api.server.VncEndpoint
+	(*ListVncEndpointsResponse)(nil),                         // 34: api.server.ListVncEndpointsResponse
+	(*AdminListAvailableServerResponse_AvailableServer)(nil), // 35: api.server.AdminListAvailableServerResponse.AvailableServer
+	(*DataCenter)(nil),                                       // 36: api.region.DataCenter
+	(*Flavour)(nil),                                          // 37: api.flavour.Flavour
+	(*timestamppb.Timestamp)(nil),                            // 38: google.protobuf.Timestamp
+	(*ServerInterface)(nil),                                  // 39: api.network.ServerInterface
+	(*Cidr)(nil),                                             // 40: api.network.Cidr
+	(*Switch)(nil),                                           // 41: api.network.Switch
 }
 var file_server_proto_depIdxs = []int32{
 	2,  // 0: api.server.PlatformManagement.type:type_name -> api.server.PlatformManagementType
-	38, // 1: api.server.Server.datacenter:type_name -> api.region.DataCenter
-	39, // 2: api.server.Server.flavour:type_name -> api.flavour.Flavour
+	36, // 1: api.server.Server.datacenter:type_name -> api.region.DataCenter
+	37, // 2: api.server.Server.flavour:type_name -> api.flavour.Flavour
 	0,  // 3: api.server.Server.status:type_name -> api.server.ServerStatus
-	40, // 4: api.server.Server.status_updated_at:type_name -> google.protobuf.Timestamp
-	41, // 5: api.server.Server.interfaces:type_name -> api.network.ServerInterface
+	38, // 4: api.server.Server.status_updated_at:type_name -> google.protobuf.Timestamp
+	39, // 5: api.server.Server.interfaces:type_name -> api.network.ServerInterface
 	2,  // 6: api.server.Server.platform_management_type:type_name -> api.server.PlatformManagementType
-	40, // 7: api.server.Server.created_at:type_name -> google.protobuf.Timestamp
-	40, // 8: api.server.Server.updated_at:type_name -> google.protobuf.Timestamp
-	40, // 9: api.server.ServerLog.created_at:type_name -> google.protobuf.Timestamp
-	40, // 10: api.server.ServerLog.updated_at:type_name -> google.protobuf.Timestamp
+	38, // 7: api.server.Server.created_at:type_name -> google.protobuf.Timestamp
+	38, // 8: api.server.Server.updated_at:type_name -> google.protobuf.Timestamp
+	38, // 9: api.server.ServerLog.created_at:type_name -> google.protobuf.Timestamp
+	38, // 10: api.server.ServerLog.updated_at:type_name -> google.protobuf.Timestamp
 	7,  // 11: api.server.AdminGetServerLogsResponse.logs:type_name -> api.server.ServerLog
 	6,  // 12: api.server.AdminImportServerResponse.server:type_name -> api.server.Server
-	37, // 13: api.server.AdminListAvailableServerResponse.server:type_name -> api.server.AdminListAvailableServerResponse.AvailableServer
+	35, // 13: api.server.AdminListAvailableServerResponse.server:type_name -> api.server.AdminListAvailableServerResponse.AvailableServer
 	5,  // 14: api.server.RebootServerRequest.platform_management:type_name -> api.server.PlatformManagement
 	5,  // 15: api.server.ShutOffServerRequest.platform_management:type_name -> api.server.PlatformManagement
-	42, // 16: api.server.PlatformManagementNetworkSettings.ipv4:type_name -> api.network.Cidr
-	42, // 17: api.server.PlatformManagementNetworkSettings.gateway:type_name -> api.network.Cidr
+	40, // 16: api.server.PlatformManagementNetworkSettings.ipv4:type_name -> api.network.Cidr
+	40, // 17: api.server.PlatformManagementNetworkSettings.gateway:type_name -> api.network.Cidr
 	5,  // 18: api.server.ConfigurePlatformManagementRequest.platform_management:type_name -> api.server.PlatformManagement
-	43, // 19: api.server.ConfigurePlatformManagementRequest.switch:type_name -> api.network.Switch
+	41, // 19: api.server.ConfigurePlatformManagementRequest.switch:type_name -> api.network.Switch
 	15, // 20: api.server.ConfigurePlatformManagementRequest.network_settings:type_name -> api.server.PlatformManagementNetworkSettings
-	19, // 21: api.server.GetVNCResponse.vnc:type_name -> api.server.VNCConnection
-	3,  // 22: api.server.AdminChangeServerPowerStatusRequest.status:type_name -> api.server.ServerPowerStatus
-	1,  // 23: api.server.AdminCreateServerJobRequest.job:type_name -> api.server.ServerJob
-	44, // 24: api.server.PostProvisioningCallbackResponse.switch_configuration:type_name -> api.network.ConfigureSwitchPortRequest
-	5,  // 25: api.server.PostProvisioningCallbackResponse.platform_management:type_name -> api.server.PlatformManagement
-	5,  // 26: api.server.ListPlatformManagementsResponse.platform_managements:type_name -> api.server.PlatformManagement
-	4,  // 27: api.server.ServerMonitoring.tag:type_name -> api.server.MonitoringTag
-	33, // 28: api.server.ListMonitoringTargetsResponse.monitoring:type_name -> api.server.ServerMonitoring
-	35, // 29: api.server.UpdateMonitoringStatusRequest.status:type_name -> api.server.MonitoringStatus
-	30, // [30:30] is the sub-list for method output_type
-	30, // [30:30] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	3,  // 21: api.server.AdminChangeServerPowerStatusRequest.status:type_name -> api.server.ServerPowerStatus
+	1,  // 22: api.server.AdminCreateServerJobRequest.job:type_name -> api.server.ServerJob
+	4,  // 23: api.server.ServerMonitoring.tag:type_name -> api.server.MonitoringTag
+	25, // 24: api.server.ListMonitoringTargetsResponse.monitoring:type_name -> api.server.ServerMonitoring
+	27, // 25: api.server.UpdateMonitoringStatusRequest.status:type_name -> api.server.MonitoringStatus
+	33, // 26: api.server.ListVncEndpointsResponse.endpoints:type_name -> api.server.VncEndpoint
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_server_proto_init() }
@@ -2815,18 +2683,6 @@ func file_server_proto_init() {
 			}
 		}
 		file_server_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VNCConnection); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetVNCRequest); i {
 			case 0:
 				return &v.state
@@ -2838,7 +2694,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetVNCResponse); i {
 			case 0:
 				return &v.state
@@ -2850,7 +2706,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CreatePxeLinuxConfigRequest); i {
 			case 0:
 				return &v.state
@@ -2862,31 +2718,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAutoRunScriptRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAutoRunScriptResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AdminChangeServerPowerStatusRequest); i {
 			case 0:
 				return &v.state
@@ -2898,7 +2730,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AdminGetServerPlatformManagementRequest); i {
 			case 0:
 				return &v.state
@@ -2910,7 +2742,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AdminCreateServerJobRequest); i {
 			case 0:
 				return &v.state
@@ -2922,67 +2754,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostProvisioningCallbackRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostProvisioningCallbackResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FinishProvisioningCallbackRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListPlatformManagementsResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostDeprovisioningCallbackRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_server_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ServerMonitoring); i {
 			case 0:
 				return &v.state
@@ -2994,7 +2766,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListMonitoringTargetsResponse); i {
 			case 0:
 				return &v.state
@@ -3006,7 +2778,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MonitoringStatus); i {
 			case 0:
 				return &v.state
@@ -3018,7 +2790,7 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UpdateMonitoringStatusRequest); i {
 			case 0:
 				return &v.state
@@ -3030,7 +2802,79 @@ func file_server_proto_init() {
 				return nil
 			}
 		}
-		file_server_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+		file_server_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ProvisioningCallbackRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PostProvisioningCallbackRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeprovisioningCallbackRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListVncEndpointsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*VncEndpoint); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListVncEndpointsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_server_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AdminListAvailableServerResponse_AvailableServer); i {
 			case 0:
 				return &v.state
@@ -3049,7 +2893,7 @@ func file_server_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_server_proto_rawDesc,
 			NumEnums:      5,
-			NumMessages:   33,
+			NumMessages:   31,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

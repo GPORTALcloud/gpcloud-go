@@ -3752,32 +3752,33 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceAPIClient interface {
+	// Metadata Agent
 	// Requests the metadata information from Backend
 	GetMetadata(ctx context.Context, in *MetadataRequest, opts ...grpc.CallOption) (*Metadata, error)
 	// Requests password information from backend
 	GetMetadataPassword(ctx context.Context, in *MetadataRequest, opts ...grpc.CallOption) (*MetadataPasswordResponse, error)
-	// GetNetworkBootData Returns all information for network boot
-	GetNetworkBootData(ctx context.Context, in *NetworkBootDataRequest, opts ...grpc.CallOption) (*NetworkBootDataResponse, error)
+	// Post Provisioning callback will be sent after server is configured and ready
+	PostProvisioningCallback(ctx context.Context, in *PostProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// Network Agent
 	// GetDHCPNetworks Returns all DHCP network information
-	GetDHCPNetworks(ctx context.Context, in *DHCPNetworksRequest, opts ...grpc.CallOption) (*DHCPNetworksResponse, error)
+	GetDHCPInformation(ctx context.Context, in *GetDHCPInformationRequest, opts ...grpc.CallOption) (*GetDHCPInformationResponse, error)
+	// Provisioning callback will be sent after image has copied to server successfully
+	ProvisioningCallback(ctx context.Context, in *ProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// Deprovisoning callback will be sent after server has cleaned from all data
+	DeprovisioningCallback(ctx context.Context, in *DeprovisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// SWITCHES
 	// ListSwitches List all switches for agent
 	ListSwitches(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListSwitchesResponse, error)
 	// ListSwitches List all switches for agent
 	UpdateMacAddressMapping(ctx context.Context, in *UpdateMacAddressMappingRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// GetAutoRunScript Get auto-run script for server
-	GetAutoRunScript(ctx context.Context, in *GetAutoRunScriptRequest, opts ...grpc.CallOption) (*GetAutoRunScriptResponse, error)
-	// PostProvisioningCallback Post provisioning callback
-	PostProvisioningCallback(ctx context.Context, in *PostProvisioningCallbackRequest, opts ...grpc.CallOption) (*PostProvisioningCallbackResponse, error)
-	// FinishProvisioningCallback Post provisioning callback
-	FinishProvisioningCallback(ctx context.Context, in *FinishProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// PostDeprovisioningCallback Post deprovisioning callback
-	PostDeprovisioningCallback(ctx context.Context, in *PostDeprovisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// MONITORING
 	// ListMonitoringTargets Returns all monitoring targets
 	ListMonitoringTargets(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListMonitoringTargetsResponse, error)
 	// UpdateMonitoringStatus Update monitoring status on backend
 	UpdateMonitoringStatus(ctx context.Context, in *UpdateMonitoringStatusRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
-	// ListPlatformManagements List all platform managements for agent
-	ListPlatformManagements(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListPlatformManagementsResponse, error)
+	// VNC AGENT
+	// ListMonitoringTargets Returns all monitoring targets
+	ListVncEndpoints(ctx context.Context, in *ListVncEndpointsRequest, opts ...grpc.CallOption) (*ListVncEndpointsResponse, error)
 }
 
 type serviceAPIClient struct {
@@ -3806,18 +3807,36 @@ func (c *serviceAPIClient) GetMetadataPassword(ctx context.Context, in *Metadata
 	return out, nil
 }
 
-func (c *serviceAPIClient) GetNetworkBootData(ctx context.Context, in *NetworkBootDataRequest, opts ...grpc.CallOption) (*NetworkBootDataResponse, error) {
-	out := new(NetworkBootDataResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/GetNetworkBootData", in, out, opts...)
+func (c *serviceAPIClient) PostProvisioningCallback(ctx context.Context, in *PostProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, "/api.ServiceAPI/PostProvisioningCallback", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *serviceAPIClient) GetDHCPNetworks(ctx context.Context, in *DHCPNetworksRequest, opts ...grpc.CallOption) (*DHCPNetworksResponse, error) {
-	out := new(DHCPNetworksResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/GetDHCPNetworks", in, out, opts...)
+func (c *serviceAPIClient) GetDHCPInformation(ctx context.Context, in *GetDHCPInformationRequest, opts ...grpc.CallOption) (*GetDHCPInformationResponse, error) {
+	out := new(GetDHCPInformationResponse)
+	err := c.cc.Invoke(ctx, "/api.ServiceAPI/GetDHCPInformation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceAPIClient) ProvisioningCallback(ctx context.Context, in *ProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, "/api.ServiceAPI/ProvisioningCallback", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceAPIClient) DeprovisioningCallback(ctx context.Context, in *DeprovisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
+	out := new(EmptyResponse)
+	err := c.cc.Invoke(ctx, "/api.ServiceAPI/DeprovisioningCallback", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3842,42 +3861,6 @@ func (c *serviceAPIClient) UpdateMacAddressMapping(ctx context.Context, in *Upda
 	return out, nil
 }
 
-func (c *serviceAPIClient) GetAutoRunScript(ctx context.Context, in *GetAutoRunScriptRequest, opts ...grpc.CallOption) (*GetAutoRunScriptResponse, error) {
-	out := new(GetAutoRunScriptResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/GetAutoRunScript", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAPIClient) PostProvisioningCallback(ctx context.Context, in *PostProvisioningCallbackRequest, opts ...grpc.CallOption) (*PostProvisioningCallbackResponse, error) {
-	out := new(PostProvisioningCallbackResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/PostProvisioningCallback", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAPIClient) FinishProvisioningCallback(ctx context.Context, in *FinishProvisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/FinishProvisioningCallback", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *serviceAPIClient) PostDeprovisioningCallback(ctx context.Context, in *PostDeprovisioningCallbackRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
-	out := new(EmptyResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/PostDeprovisioningCallback", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *serviceAPIClient) ListMonitoringTargets(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListMonitoringTargetsResponse, error) {
 	out := new(ListMonitoringTargetsResponse)
 	err := c.cc.Invoke(ctx, "/api.ServiceAPI/ListMonitoringTargets", in, out, opts...)
@@ -3896,9 +3879,9 @@ func (c *serviceAPIClient) UpdateMonitoringStatus(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *serviceAPIClient) ListPlatformManagements(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListPlatformManagementsResponse, error) {
-	out := new(ListPlatformManagementsResponse)
-	err := c.cc.Invoke(ctx, "/api.ServiceAPI/ListPlatformManagements", in, out, opts...)
+func (c *serviceAPIClient) ListVncEndpoints(ctx context.Context, in *ListVncEndpointsRequest, opts ...grpc.CallOption) (*ListVncEndpointsResponse, error) {
+	out := new(ListVncEndpointsResponse)
+	err := c.cc.Invoke(ctx, "/api.ServiceAPI/ListVncEndpoints", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3909,32 +3892,33 @@ func (c *serviceAPIClient) ListPlatformManagements(ctx context.Context, in *Empt
 // All implementations must embed UnimplementedServiceAPIServer
 // for forward compatibility
 type ServiceAPIServer interface {
+	// Metadata Agent
 	// Requests the metadata information from Backend
 	GetMetadata(context.Context, *MetadataRequest) (*Metadata, error)
 	// Requests password information from backend
 	GetMetadataPassword(context.Context, *MetadataRequest) (*MetadataPasswordResponse, error)
-	// GetNetworkBootData Returns all information for network boot
-	GetNetworkBootData(context.Context, *NetworkBootDataRequest) (*NetworkBootDataResponse, error)
+	// Post Provisioning callback will be sent after server is configured and ready
+	PostProvisioningCallback(context.Context, *PostProvisioningCallbackRequest) (*EmptyResponse, error)
+	// Network Agent
 	// GetDHCPNetworks Returns all DHCP network information
-	GetDHCPNetworks(context.Context, *DHCPNetworksRequest) (*DHCPNetworksResponse, error)
+	GetDHCPInformation(context.Context, *GetDHCPInformationRequest) (*GetDHCPInformationResponse, error)
+	// Provisioning callback will be sent after image has copied to server successfully
+	ProvisioningCallback(context.Context, *ProvisioningCallbackRequest) (*EmptyResponse, error)
+	// Deprovisoning callback will be sent after server has cleaned from all data
+	DeprovisioningCallback(context.Context, *DeprovisioningCallbackRequest) (*EmptyResponse, error)
+	// SWITCHES
 	// ListSwitches List all switches for agent
 	ListSwitches(context.Context, *EmptyRequest) (*ListSwitchesResponse, error)
 	// ListSwitches List all switches for agent
 	UpdateMacAddressMapping(context.Context, *UpdateMacAddressMappingRequest) (*EmptyResponse, error)
-	// GetAutoRunScript Get auto-run script for server
-	GetAutoRunScript(context.Context, *GetAutoRunScriptRequest) (*GetAutoRunScriptResponse, error)
-	// PostProvisioningCallback Post provisioning callback
-	PostProvisioningCallback(context.Context, *PostProvisioningCallbackRequest) (*PostProvisioningCallbackResponse, error)
-	// FinishProvisioningCallback Post provisioning callback
-	FinishProvisioningCallback(context.Context, *FinishProvisioningCallbackRequest) (*EmptyResponse, error)
-	// PostDeprovisioningCallback Post deprovisioning callback
-	PostDeprovisioningCallback(context.Context, *PostDeprovisioningCallbackRequest) (*EmptyResponse, error)
+	// MONITORING
 	// ListMonitoringTargets Returns all monitoring targets
 	ListMonitoringTargets(context.Context, *EmptyRequest) (*ListMonitoringTargetsResponse, error)
 	// UpdateMonitoringStatus Update monitoring status on backend
 	UpdateMonitoringStatus(context.Context, *UpdateMonitoringStatusRequest) (*EmptyResponse, error)
-	// ListPlatformManagements List all platform managements for agent
-	ListPlatformManagements(context.Context, *EmptyRequest) (*ListPlatformManagementsResponse, error)
+	// VNC AGENT
+	// ListMonitoringTargets Returns all monitoring targets
+	ListVncEndpoints(context.Context, *ListVncEndpointsRequest) (*ListVncEndpointsResponse, error)
 	mustEmbedUnimplementedServiceAPIServer()
 }
 
@@ -3948,11 +3932,17 @@ func (UnimplementedServiceAPIServer) GetMetadata(context.Context, *MetadataReque
 func (UnimplementedServiceAPIServer) GetMetadataPassword(context.Context, *MetadataRequest) (*MetadataPasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMetadataPassword not implemented")
 }
-func (UnimplementedServiceAPIServer) GetNetworkBootData(context.Context, *NetworkBootDataRequest) (*NetworkBootDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNetworkBootData not implemented")
+func (UnimplementedServiceAPIServer) PostProvisioningCallback(context.Context, *PostProvisioningCallbackRequest) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostProvisioningCallback not implemented")
 }
-func (UnimplementedServiceAPIServer) GetDHCPNetworks(context.Context, *DHCPNetworksRequest) (*DHCPNetworksResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDHCPNetworks not implemented")
+func (UnimplementedServiceAPIServer) GetDHCPInformation(context.Context, *GetDHCPInformationRequest) (*GetDHCPInformationResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDHCPInformation not implemented")
+}
+func (UnimplementedServiceAPIServer) ProvisioningCallback(context.Context, *ProvisioningCallbackRequest) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProvisioningCallback not implemented")
+}
+func (UnimplementedServiceAPIServer) DeprovisioningCallback(context.Context, *DeprovisioningCallbackRequest) (*EmptyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeprovisioningCallback not implemented")
 }
 func (UnimplementedServiceAPIServer) ListSwitches(context.Context, *EmptyRequest) (*ListSwitchesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSwitches not implemented")
@@ -3960,26 +3950,14 @@ func (UnimplementedServiceAPIServer) ListSwitches(context.Context, *EmptyRequest
 func (UnimplementedServiceAPIServer) UpdateMacAddressMapping(context.Context, *UpdateMacAddressMappingRequest) (*EmptyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMacAddressMapping not implemented")
 }
-func (UnimplementedServiceAPIServer) GetAutoRunScript(context.Context, *GetAutoRunScriptRequest) (*GetAutoRunScriptResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetAutoRunScript not implemented")
-}
-func (UnimplementedServiceAPIServer) PostProvisioningCallback(context.Context, *PostProvisioningCallbackRequest) (*PostProvisioningCallbackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PostProvisioningCallback not implemented")
-}
-func (UnimplementedServiceAPIServer) FinishProvisioningCallback(context.Context, *FinishProvisioningCallbackRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FinishProvisioningCallback not implemented")
-}
-func (UnimplementedServiceAPIServer) PostDeprovisioningCallback(context.Context, *PostDeprovisioningCallbackRequest) (*EmptyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PostDeprovisioningCallback not implemented")
-}
 func (UnimplementedServiceAPIServer) ListMonitoringTargets(context.Context, *EmptyRequest) (*ListMonitoringTargetsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMonitoringTargets not implemented")
 }
 func (UnimplementedServiceAPIServer) UpdateMonitoringStatus(context.Context, *UpdateMonitoringStatusRequest) (*EmptyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMonitoringStatus not implemented")
 }
-func (UnimplementedServiceAPIServer) ListPlatformManagements(context.Context, *EmptyRequest) (*ListPlatformManagementsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListPlatformManagements not implemented")
+func (UnimplementedServiceAPIServer) ListVncEndpoints(context.Context, *ListVncEndpointsRequest) (*ListVncEndpointsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListVncEndpoints not implemented")
 }
 func (UnimplementedServiceAPIServer) mustEmbedUnimplementedServiceAPIServer() {}
 
@@ -4030,38 +4008,74 @@ func _ServiceAPI_GetMetadataPassword_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAPI_GetNetworkBootData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NetworkBootDataRequest)
+func _ServiceAPI_PostProvisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostProvisioningCallbackRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceAPIServer).GetNetworkBootData(ctx, in)
+		return srv.(ServiceAPIServer).PostProvisioningCallback(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.ServiceAPI/GetNetworkBootData",
+		FullMethod: "/api.ServiceAPI/PostProvisioningCallback",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).GetNetworkBootData(ctx, req.(*NetworkBootDataRequest))
+		return srv.(ServiceAPIServer).PostProvisioningCallback(ctx, req.(*PostProvisioningCallbackRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAPI_GetDHCPNetworks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DHCPNetworksRequest)
+func _ServiceAPI_GetDHCPInformation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDHCPInformationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceAPIServer).GetDHCPNetworks(ctx, in)
+		return srv.(ServiceAPIServer).GetDHCPInformation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.ServiceAPI/GetDHCPNetworks",
+		FullMethod: "/api.ServiceAPI/GetDHCPInformation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).GetDHCPNetworks(ctx, req.(*DHCPNetworksRequest))
+		return srv.(ServiceAPIServer).GetDHCPInformation(ctx, req.(*GetDHCPInformationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceAPI_ProvisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProvisioningCallbackRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceAPIServer).ProvisioningCallback(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.ServiceAPI/ProvisioningCallback",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceAPIServer).ProvisioningCallback(ctx, req.(*ProvisioningCallbackRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ServiceAPI_DeprovisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeprovisioningCallbackRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceAPIServer).DeprovisioningCallback(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.ServiceAPI/DeprovisioningCallback",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceAPIServer).DeprovisioningCallback(ctx, req.(*DeprovisioningCallbackRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4102,78 +4116,6 @@ func _ServiceAPI_UpdateMacAddressMapping_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAPI_GetAutoRunScript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetAutoRunScriptRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAPIServer).GetAutoRunScript(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.ServiceAPI/GetAutoRunScript",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).GetAutoRunScript(ctx, req.(*GetAutoRunScriptRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAPI_PostProvisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostProvisioningCallbackRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAPIServer).PostProvisioningCallback(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.ServiceAPI/PostProvisioningCallback",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).PostProvisioningCallback(ctx, req.(*PostProvisioningCallbackRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAPI_FinishProvisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FinishProvisioningCallbackRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAPIServer).FinishProvisioningCallback(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.ServiceAPI/FinishProvisioningCallback",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).FinishProvisioningCallback(ctx, req.(*FinishProvisioningCallbackRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ServiceAPI_PostDeprovisioningCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostDeprovisioningCallbackRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ServiceAPIServer).PostDeprovisioningCallback(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/api.ServiceAPI/PostDeprovisioningCallback",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).PostDeprovisioningCallback(ctx, req.(*PostDeprovisioningCallbackRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ServiceAPI_ListMonitoringTargets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyRequest)
 	if err := dec(in); err != nil {
@@ -4210,20 +4152,20 @@ func _ServiceAPI_UpdateMonitoringStatus_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ServiceAPI_ListPlatformManagements_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
+func _ServiceAPI_ListVncEndpoints_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListVncEndpointsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceAPIServer).ListPlatformManagements(ctx, in)
+		return srv.(ServiceAPIServer).ListVncEndpoints(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/api.ServiceAPI/ListPlatformManagements",
+		FullMethod: "/api.ServiceAPI/ListVncEndpoints",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceAPIServer).ListPlatformManagements(ctx, req.(*EmptyRequest))
+		return srv.(ServiceAPIServer).ListVncEndpoints(ctx, req.(*ListVncEndpointsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4244,12 +4186,20 @@ var ServiceAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAPI_GetMetadataPassword_Handler,
 		},
 		{
-			MethodName: "GetNetworkBootData",
-			Handler:    _ServiceAPI_GetNetworkBootData_Handler,
+			MethodName: "PostProvisioningCallback",
+			Handler:    _ServiceAPI_PostProvisioningCallback_Handler,
 		},
 		{
-			MethodName: "GetDHCPNetworks",
-			Handler:    _ServiceAPI_GetDHCPNetworks_Handler,
+			MethodName: "GetDHCPInformation",
+			Handler:    _ServiceAPI_GetDHCPInformation_Handler,
+		},
+		{
+			MethodName: "ProvisioningCallback",
+			Handler:    _ServiceAPI_ProvisioningCallback_Handler,
+		},
+		{
+			MethodName: "DeprovisioningCallback",
+			Handler:    _ServiceAPI_DeprovisioningCallback_Handler,
 		},
 		{
 			MethodName: "ListSwitches",
@@ -4260,22 +4210,6 @@ var ServiceAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAPI_UpdateMacAddressMapping_Handler,
 		},
 		{
-			MethodName: "GetAutoRunScript",
-			Handler:    _ServiceAPI_GetAutoRunScript_Handler,
-		},
-		{
-			MethodName: "PostProvisioningCallback",
-			Handler:    _ServiceAPI_PostProvisioningCallback_Handler,
-		},
-		{
-			MethodName: "FinishProvisioningCallback",
-			Handler:    _ServiceAPI_FinishProvisioningCallback_Handler,
-		},
-		{
-			MethodName: "PostDeprovisioningCallback",
-			Handler:    _ServiceAPI_PostDeprovisioningCallback_Handler,
-		},
-		{
 			MethodName: "ListMonitoringTargets",
 			Handler:    _ServiceAPI_ListMonitoringTargets_Handler,
 		},
@@ -4284,8 +4218,8 @@ var ServiceAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ServiceAPI_UpdateMonitoringStatus_Handler,
 		},
 		{
-			MethodName: "ListPlatformManagements",
-			Handler:    _ServiceAPI_ListPlatformManagements_Handler,
+			MethodName: "ListVncEndpoints",
+			Handler:    _ServiceAPI_ListVncEndpoints_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
