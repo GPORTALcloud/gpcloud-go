@@ -133,5 +133,5 @@ var NetworkAgentService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "agent_service.proto",
+	Metadata: "ptypes/agent_service.proto",
 }

@@ -301,7 +301,7 @@ var PublicAPI_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "service.proto",
+	Metadata: "ptypes/service.proto",
 }
 
 // UserAPIClient is the client API for UserAPI service.
@@ -440,6 +440,12 @@ type UserAPIClient interface {
 	PowerActionComputeResource(ctx context.Context, in *PowerActionComputeResourceRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
 	// Reinstall the compute resource
 	ReinstallComputeResource(ctx context.Context, in *ReinstallComputeResourceRequest, opts ...grpc.CallOption) (*ComputeResource, error)
+	// Change compute resource renew state
+	ChangeComputeResourceRenewState(ctx context.Context, in *ChangeComputeResourceRenewStateRequest, opts ...grpc.CallOption) (*ComputeResource, error)
+	// Get compute resource pricing information
+	GetComputeResourcePricing(ctx context.Context, in *GetComputeResourcePricingRequest, opts ...grpc.CallOption) (*GetComputeResourcePricingResponse, error)
+	// Change the compute resource billing period
+	ChangeComputeResourceBillingPeriod(ctx context.Context, in *ChangeComputeResourceBillingPeriodRequest, opts ...grpc.CallOption) (*ComputeResource, error)
 	// Destroy the compute resource
 	DestroyComputeResource(ctx context.Context, in *DestroyComputeResourceRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
 	// List project networks
@@ -490,6 +496,8 @@ type UserAPIClient interface {
 	ListCountries(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListCountriesResponse, error)
 	// Create new billing address
 	CreateBillingAddress(ctx context.Context, in *CreateBillingAddressRequest, opts ...grpc.CallOption) (*BillingAddress, error)
+	// Update an existing billing address
+	UpdateBillingAddress(ctx context.Context, in *UpdateBillingAddressRequest, opts ...grpc.CallOption) (*BillingAddress, error)
 	// List all billing addresses
 	ListBillingAddresses(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListBillingAddressesResponse, error)
 	// Deletes a billing addresses
@@ -1024,6 +1032,33 @@ func (c *userAPIClient) ReinstallComputeResource(ctx context.Context, in *Reinst
 	return out, nil
 }
 
+func (c *userAPIClient) ChangeComputeResourceRenewState(ctx context.Context, in *ChangeComputeResourceRenewStateRequest, opts ...grpc.CallOption) (*ComputeResource, error) {
+	out := new(ComputeResource)
+	err := c.cc.Invoke(ctx, "/api.UserAPI/ChangeComputeResourceRenewState", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userAPIClient) GetComputeResourcePricing(ctx context.Context, in *GetComputeResourcePricingRequest, opts ...grpc.CallOption) (*GetComputeResourcePricingResponse, error) {
+	out := new(GetComputeResourcePricingResponse)
+	err := c.cc.Invoke(ctx, "/api.UserAPI/GetComputeResourcePricing", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userAPIClient) ChangeComputeResourceBillingPeriod(ctx context.Context, in *ChangeComputeResourceBillingPeriodRequest, opts ...grpc.CallOption) (*ComputeResource, error) {
+	out := new(ComputeResource)
+	err := c.cc.Invoke(ctx, "/api.UserAPI/ChangeComputeResourceBillingPeriod", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userAPIClient) DestroyComputeResource(ctx context.Context, in *DestroyComputeResourceRequest, opts ...grpc.CallOption) (*EmptyResponse, error) {
 	out := new(EmptyResponse)
 	err := c.cc.Invoke(ctx, "/api.UserAPI/DestroyComputeResource", in, out, opts...)
@@ -1240,6 +1275,15 @@ func (c *userAPIClient) CreateBillingAddress(ctx context.Context, in *CreateBill
 	return out, nil
 }
 
+func (c *userAPIClient) UpdateBillingAddress(ctx context.Context, in *UpdateBillingAddressRequest, opts ...grpc.CallOption) (*BillingAddress, error) {
+	out := new(BillingAddress)
+	err := c.cc.Invoke(ctx, "/api.UserAPI/UpdateBillingAddress", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userAPIClient) ListBillingAddresses(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ListBillingAddressesResponse, error) {
 	out := new(ListBillingAddressesResponse)
 	err := c.cc.Invoke(ctx, "/api.UserAPI/ListBillingAddresses", in, out, opts...)
@@ -1403,6 +1447,12 @@ type UserAPIServer interface {
 	PowerActionComputeResource(context.Context, *PowerActionComputeResourceRequest) (*EmptyResponse, error)
 	// Reinstall the compute resource
 	ReinstallComputeResource(context.Context, *ReinstallComputeResourceRequest) (*ComputeResource, error)
+	// Change compute resource renew state
+	ChangeComputeResourceRenewState(context.Context, *ChangeComputeResourceRenewStateRequest) (*ComputeResource, error)
+	// Get compute resource pricing information
+	GetComputeResourcePricing(context.Context, *GetComputeResourcePricingRequest) (*GetComputeResourcePricingResponse, error)
+	// Change the compute resource billing period
+	ChangeComputeResourceBillingPeriod(context.Context, *ChangeComputeResourceBillingPeriodRequest) (*ComputeResource, error)
 	// Destroy the compute resource
 	DestroyComputeResource(context.Context, *DestroyComputeResourceRequest) (*EmptyResponse, error)
 	// List project networks
@@ -1453,6 +1503,8 @@ type UserAPIServer interface {
 	ListCountries(context.Context, *EmptyRequest) (*ListCountriesResponse, error)
 	// Create new billing address
 	CreateBillingAddress(context.Context, *CreateBillingAddressRequest) (*BillingAddress, error)
+	// Update an existing billing address
+	UpdateBillingAddress(context.Context, *UpdateBillingAddressRequest) (*BillingAddress, error)
 	// List all billing addresses
 	ListBillingAddresses(context.Context, *EmptyRequest) (*ListBillingAddressesResponse, error)
 	// Deletes a billing addresses
@@ -1631,6 +1683,15 @@ func (UnimplementedUserAPIServer) PowerActionComputeResource(context.Context, *P
 func (UnimplementedUserAPIServer) ReinstallComputeResource(context.Context, *ReinstallComputeResourceRequest) (*ComputeResource, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReinstallComputeResource not implemented")
 }
+func (UnimplementedUserAPIServer) ChangeComputeResourceRenewState(context.Context, *ChangeComputeResourceRenewStateRequest) (*ComputeResource, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeComputeResourceRenewState not implemented")
+}
+func (UnimplementedUserAPIServer) GetComputeResourcePricing(context.Context, *GetComputeResourcePricingRequest) (*GetComputeResourcePricingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetComputeResourcePricing not implemented")
+}
+func (UnimplementedUserAPIServer) ChangeComputeResourceBillingPeriod(context.Context, *ChangeComputeResourceBillingPeriodRequest) (*ComputeResource, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeComputeResourceBillingPeriod not implemented")
+}
 func (UnimplementedUserAPIServer) DestroyComputeResource(context.Context, *DestroyComputeResourceRequest) (*EmptyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DestroyComputeResource not implemented")
 }
@@ -1702,6 +1763,9 @@ func (UnimplementedUserAPIServer) ListCountries(context.Context, *EmptyRequest) 
 }
 func (UnimplementedUserAPIServer) CreateBillingAddress(context.Context, *CreateBillingAddressRequest) (*BillingAddress, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBillingAddress not implemented")
+}
+func (UnimplementedUserAPIServer) UpdateBillingAddress(context.Context, *UpdateBillingAddressRequest) (*BillingAddress, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateBillingAddress not implemented")
 }
 func (UnimplementedUserAPIServer) ListBillingAddresses(context.Context, *EmptyRequest) (*ListBillingAddressesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListBillingAddresses not implemented")
@@ -2718,6 +2782,60 @@ func _UserAPI_ReinstallComputeResource_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserAPI_ChangeComputeResourceRenewState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeComputeResourceRenewStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAPIServer).ChangeComputeResourceRenewState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.UserAPI/ChangeComputeResourceRenewState",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAPIServer).ChangeComputeResourceRenewState(ctx, req.(*ChangeComputeResourceRenewStateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserAPI_GetComputeResourcePricing_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetComputeResourcePricingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAPIServer).GetComputeResourcePricing(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.UserAPI/GetComputeResourcePricing",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAPIServer).GetComputeResourcePricing(ctx, req.(*GetComputeResourcePricingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserAPI_ChangeComputeResourceBillingPeriod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeComputeResourceBillingPeriodRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAPIServer).ChangeComputeResourceBillingPeriod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.UserAPI/ChangeComputeResourceBillingPeriod",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAPIServer).ChangeComputeResourceBillingPeriod(ctx, req.(*ChangeComputeResourceBillingPeriodRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserAPI_DestroyComputeResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DestroyComputeResourceRequest)
 	if err := dec(in); err != nil {
@@ -3150,6 +3268,24 @@ func _UserAPI_CreateBillingAddress_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserAPI_UpdateBillingAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateBillingAddressRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserAPIServer).UpdateBillingAddress(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.UserAPI/UpdateBillingAddress",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserAPIServer).UpdateBillingAddress(ctx, req.(*UpdateBillingAddressRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserAPI_ListBillingAddresses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyRequest)
 	if err := dec(in); err != nil {
@@ -3428,6 +3564,18 @@ var UserAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserAPI_ReinstallComputeResource_Handler,
 		},
 		{
+			MethodName: "ChangeComputeResourceRenewState",
+			Handler:    _UserAPI_ChangeComputeResourceRenewState_Handler,
+		},
+		{
+			MethodName: "GetComputeResourcePricing",
+			Handler:    _UserAPI_GetComputeResourcePricing_Handler,
+		},
+		{
+			MethodName: "ChangeComputeResourceBillingPeriod",
+			Handler:    _UserAPI_ChangeComputeResourceBillingPeriod_Handler,
+		},
+		{
 			MethodName: "DestroyComputeResource",
 			Handler:    _UserAPI_DestroyComputeResource_Handler,
 		},
@@ -3524,6 +3672,10 @@ var UserAPI_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserAPI_CreateBillingAddress_Handler,
 		},
 		{
+			MethodName: "UpdateBillingAddress",
+			Handler:    _UserAPI_UpdateBillingAddress_Handler,
+		},
+		{
 			MethodName: "ListBillingAddresses",
 			Handler:    _UserAPI_ListBillingAddresses_Handler,
 		},
@@ -3543,7 +3695,7 @@ var UserAPI_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "service.proto",
+	Metadata: "ptypes/service.proto",
 }
 
 // GatewayAPIClient is the client API for GatewayAPI service.
@@ -3745,7 +3897,7 @@ var GatewayAPI_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "service.proto",
+	Metadata: "ptypes/service.proto",
 }
 
 // ServiceAPIClient is the client API for ServiceAPI service.
@@ -4223,5 +4375,5 @@ var ServiceAPI_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "service.proto",
+	Metadata: "ptypes/service.proto",
 }

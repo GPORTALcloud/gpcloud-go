@@ -182,6 +182,8 @@ type AdminAPIClient interface {
 	AdminCreateVlan(ctx context.Context, in *AdminCreateVlanRequest, opts ...grpc.CallOption) (*VLAN, error)
 	// Delete a single VLAN
 	AdminDeleteVlan(ctx context.Context, in *AdminDeleteVlanRequest, opts ...grpc.CallOption) (*EmptyResponse, error)
+	// Get monthly reporting
+	AdminGetReporting(ctx context.Context, in *AdminGetReportingRequest, opts ...grpc.CallOption) (*AdminGetReportingResponse, error)
 }
 
 type adminAPIClient struct {
@@ -930,6 +932,15 @@ func (c *adminAPIClient) AdminDeleteVlan(ctx context.Context, in *AdminDeleteVla
 	return out, nil
 }
 
+func (c *adminAPIClient) AdminGetReporting(ctx context.Context, in *AdminGetReportingRequest, opts ...grpc.CallOption) (*AdminGetReportingResponse, error) {
+	out := new(AdminGetReportingResponse)
+	err := c.cc.Invoke(ctx, "/api.AdminAPI/AdminGetReporting", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminAPIServer is the server API for AdminAPI service.
 // All implementations must embed UnimplementedAdminAPIServer
 // for forward compatibility
@@ -1098,6 +1109,8 @@ type AdminAPIServer interface {
 	AdminCreateVlan(context.Context, *AdminCreateVlanRequest) (*VLAN, error)
 	// Delete a single VLAN
 	AdminDeleteVlan(context.Context, *AdminDeleteVlanRequest) (*EmptyResponse, error)
+	// Get monthly reporting
+	AdminGetReporting(context.Context, *AdminGetReportingRequest) (*AdminGetReportingResponse, error)
 	mustEmbedUnimplementedAdminAPIServer()
 }
 
@@ -1350,6 +1363,9 @@ func (UnimplementedAdminAPIServer) AdminCreateVlan(context.Context, *AdminCreate
 }
 func (UnimplementedAdminAPIServer) AdminDeleteVlan(context.Context, *AdminDeleteVlanRequest) (*EmptyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AdminDeleteVlan not implemented")
+}
+func (UnimplementedAdminAPIServer) AdminGetReporting(context.Context, *AdminGetReportingRequest) (*AdminGetReportingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AdminGetReporting not implemented")
 }
 func (UnimplementedAdminAPIServer) mustEmbedUnimplementedAdminAPIServer() {}
 
@@ -2840,6 +2856,24 @@ func _AdminAPI_AdminDeleteVlan_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminAPI_AdminGetReporting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AdminGetReportingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminAPIServer).AdminGetReporting(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.AdminAPI/AdminGetReporting",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminAPIServer).AdminGetReporting(ctx, req.(*AdminGetReportingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminAPI_ServiceDesc is the grpc.ServiceDesc for AdminAPI service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -3175,7 +3209,11 @@ var AdminAPI_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "AdminDeleteVlan",
 			Handler:    _AdminAPI_AdminDeleteVlan_Handler,
 		},
+		{
+			MethodName: "AdminGetReporting",
+			Handler:    _AdminAPI_AdminGetReporting_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "admin_service.proto",
+	Metadata: "ptypes/admin_service.proto",
 }
