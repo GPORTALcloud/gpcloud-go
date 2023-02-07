@@ -1,3 +1,7 @@
+### This repository is archived, please go to https://github.com/G-PORTAL/gpcloud-go for the latest version.
+
+---
+
 # GPCloud Golang Client
 
 This is the official GPCloud Golang client. Please raise an issue if you have found any problems or having questions.
